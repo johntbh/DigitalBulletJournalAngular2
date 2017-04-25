@@ -33,7 +33,7 @@ export class DailyLogComponent {
     ngOnInit(): void {
       this.date = (new Date()).toISOString().substr(0, 10)
       this.newEntry = new Entry();
-      
+
 
       this.getEntries();
     }
@@ -45,6 +45,24 @@ export class DailyLogComponent {
     }
 
     changeDate(): void{
+      this.EntryService.getEntries_Date(this.date).then(entries => this.entries = entries);
+    }
+
+    tomorrowLog(event: any): void {
+      event.preventDefault()
+      var dateObj = new Date(this.date.toString())
+      dateObj.setDate(dateObj.getDate()+1)
+
+      this.date = dateObj.toISOString().substr(0, 10)
+      this.EntryService.getEntries_Date(this.date).then(entries => this.entries = entries);
+    }
+
+    yesterdayLog(event: any): void {
+      event.preventDefault()
+      var dateObj = new Date(this.date.toString())
+      dateObj.setDate(dateObj.getDate()-1)
+
+      this.date = dateObj.toISOString().substr(0, 10)
       this.EntryService.getEntries_Date(this.date).then(entries => this.entries = entries);
     }
 

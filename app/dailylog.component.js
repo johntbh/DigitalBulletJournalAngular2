@@ -32,6 +32,22 @@ var DailyLogComponent = (function () {
         var _this = this;
         this.EntryService.getEntries_Date(this.date).then(function (entries) { return _this.entries = entries; });
     };
+    DailyLogComponent.prototype.tomorrowLog = function (event) {
+        var _this = this;
+        event.preventDefault();
+        var dateObj = new Date(this.date.toString());
+        dateObj.setDate(dateObj.getDate() + 1);
+        this.date = dateObj.toISOString().substr(0, 10);
+        this.EntryService.getEntries_Date(this.date).then(function (entries) { return _this.entries = entries; });
+    };
+    DailyLogComponent.prototype.yesterdayLog = function (event) {
+        var _this = this;
+        event.preventDefault();
+        var dateObj = new Date(this.date.toString());
+        dateObj.setDate(dateObj.getDate() - 1);
+        this.date = dateObj.toISOString().substr(0, 10);
+        this.EntryService.getEntries_Date(this.date).then(function (entries) { return _this.entries = entries; });
+    };
     DailyLogComponent.prototype.addEntry = function (text) {
         var _this = this;
         this.EntryService.addEntry(this.newEntry).then(function (fullEntry) {

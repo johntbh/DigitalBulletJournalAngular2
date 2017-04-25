@@ -59,7 +59,7 @@ var EntryService = (function () {
             .catch(this.handleError);
     };
     EntryService.prototype.deleteEntry = function (entry) {
-        var url = this.entriesUrl + "/" + entry.id;
+        var url = this.entriesUrl + "/id/" + entry.id;
         return this.http.delete(url, { headers: this.headers })
             .toPromise()
             .then(function () { return null; })

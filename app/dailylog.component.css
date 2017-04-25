@@ -46,9 +46,21 @@ h4 {
     margin-left: 40px;
 }
 
-input {
+.previous {
+  text-align: right;
+}
+
+.next {
+  text-align: left;
+}
+
+input[type=text] {
     border-width: 0px;
     width: 90%;
+}
+
+input[type=date] {
+    text-align: center;
 }
 
 select {
@@ -65,4 +77,14 @@ input:focus {
 
 select:focus {
     outline: none;
+}
+
+input[type=date]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
+}
+
+input[type=date]::-webkit-calendar-picker-indicator {
+    -webkit-appearance: none;
+    display: none;
 }

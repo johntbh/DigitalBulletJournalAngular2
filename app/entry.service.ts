@@ -63,7 +63,7 @@ export class EntryService {
     }
 
     deleteEntry(entry: Entry): Promise<void> {
-        const url = `${this.entriesUrl}/${entry.id}`;
+        const url = `${this.entriesUrl}/id/${entry.id}`;
         return this.http.delete(url, { headers: this.headers })
             .toPromise()
             .then(() => null)
