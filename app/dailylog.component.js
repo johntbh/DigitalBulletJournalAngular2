@@ -14,7 +14,6 @@ var entry_service_1 = require('./entry.service');
 var DailyLogComponent = (function () {
     function DailyLogComponent(EntryService) {
         this.EntryService = EntryService;
-        this.standard_bullet_task = 1;
         this.text_placeholder = "Texte de votre entrée";
     }
     DailyLogComponent.prototype.ngOnInit = function () {

@@ -21,7 +21,6 @@ export class DailyLogComponent {
     entries: Entry[];
     bullets: Bullet[];
     signifiers: Signifier[];
-    standard_bullet_task : Number = 1;
     text_placeholder: String = "Texte de votre entrée";
     newTextEntry: String;
     newBulletEntry: Number;
