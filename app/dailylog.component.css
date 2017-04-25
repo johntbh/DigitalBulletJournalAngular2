@@ -46,6 +46,10 @@ h4 {
     margin-left: 40px;
 }
 
+.pager li>a {
+  font-size: 24px;
+}
+
 .previous {
   text-align: right;
 }
@@ -61,6 +65,7 @@ input[type=text] {
 
 input[type=date] {
     text-align: center;
+    border-width: 0px;
 }
 
 select {
