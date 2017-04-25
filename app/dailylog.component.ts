@@ -15,7 +15,7 @@ import { EntryService } from './entry.service';
 
 export class DailyLogComponent {
 
-    @ViewChild('sortable') listEntry: ElementRef;
+    //@ViewChild('sortable') listEntry: ElementRef;
 
     date: String;
     entries: Entry[];

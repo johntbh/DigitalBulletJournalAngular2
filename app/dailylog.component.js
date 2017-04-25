@@ -71,10 +71,6 @@ var DailyLogComponent = (function () {
             _this.entries.splice(index, 1);
         });
     };
-    __decorate([
-        core_1.ViewChild('sortable'), 
-        __metadata('design:type', core_1.ElementRef)
-    ], DailyLogComponent.prototype, "listEntry", void 0);
     DailyLogComponent = __decorate([
         core_1.Component({
             selector: 'my-dailylog',

@@ -15,7 +15,6 @@ var monthlylog_component_1 = require('./monthlylog.component');
 var routes = [
     { path: 'dailylog', component: dailylog_component_1.DailyLogComponent },
     { path: 'monthlylog', component: monthlylog_component_1.MonthlyLogComponent },
-    { path: '', redirectTo: '/dailylog', pathMatch: 'full' }
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {

@@ -7,7 +7,7 @@ import { MonthlyLogComponent } from './monthlylog.component';
 const routes: Routes = [
     { path: 'dailylog', component: DailyLogComponent },
     { path: 'monthlylog', component: MonthlyLogComponent },
-    { path: '', redirectTo: '/dailylog', pathMatch: 'full' }
+    /*{ path: '', redirectTo: '/dailylog', pathMatch: 'full' }*/
 ];
 
 @NgModule({
