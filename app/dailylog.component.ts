@@ -32,7 +32,6 @@ export class DailyLogComponent {
     ngOnInit(): void {
       this.date = (new Date()).toISOString().substr(0, 10)
       this.newEntry = new Entry();
-
       this.getEntries();
     }
 

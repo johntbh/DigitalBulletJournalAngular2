@@ -29,42 +29,38 @@ var MonthlyLogComponent = (function () {
     };
     MonthlyLogComponent.prototype.changeDate = function () {
         var _this = this;
-        this.EntryService.getEntries_Date_Month(this.month).then(function (entries_day) { return _this.entries_day = entries_day; });
-        /*
-        var fullEntry = this.entries_day
-        this.entries_day = []
-    
-        var date = new Date(this.month.toString())
-        var month = date.getMonth()+1
-        date.setMonth(month)
-        date.setDate(0)
-        var max = date.getDate()
-    
-        for(let i = 0;i < max;i++) {
-          var date_entry = new Entry()
-          date_entry.date = new Date(this.month.toString())
-          date_entry.date.setDate(i+1)
-          this.entries_day[i] = date_entry
-        }
-    
-        for(let entry of fullEntry) {
-          var day = entry.date.getDate()
-          this.entries_day[day-1] = entry
-        }
-        */
+        this.EntryService.getEntries_Date_Month(this.month)
+            .then(function (entries_day) {
+            _this.entries_day = [];
+            var date = new Date(_this.month.toString());
+            date.setMonth(date.getMonth() + 1);
+            date.setDate(0);
+            var max = date.getDate();
+            for (var i = 0; i < max; i++) {
+                var date_entry = new entry_1.Entry();
+                date_entry.date.setMonth(date.getMonth());
+                date_entry.date.setDate(i + 1);
+                _this.entries_day[i] = date_entry;
+            }
+            for (var _i = 0, entries_day_1 = entries_day; _i < entries_day_1.length; _i++) {
+                var entry = entries_day_1[_i];
+                var day = (new Date(entry.date)).getDate();
+                _this.entries_day[day - 1] = entry;
+            }
+        });
         this.EntryService.getEntries_Monthly(this.month).then(function (entries_month) { return _this.entries_month = entries_month; });
     };
-    MonthlyLogComponent.prototype.tomorrowLog = function (event) {
+    MonthlyLogComponent.prototype.nextMonth = function (event) {
         event.preventDefault();
         var dateObj = new Date(this.month.toString());
         dateObj.setMonth(dateObj.getMonth() + 2);
         this.month = dateObj.toISOString().substr(0, 7);
         this.changeDate();
     };
-    MonthlyLogComponent.prototype.yesterdayLog = function (event) {
+    MonthlyLogComponent.prototype.previousMonth = function (event) {
         event.preventDefault();
         var dateObj = new Date(this.month.toString());
-        dateObj.setDate(dateObj.getDate() - 1);
+        dateObj.setMonth(dateObj.getMonth() - 1);
         this.month = dateObj.toISOString().substr(0, 7);
         this.changeDate();
     };

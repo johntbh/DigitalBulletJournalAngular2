@@ -18,8 +18,10 @@ export class MonthlyLogComponent {
   month: String;
   entries_day: Entry[];
   entries_month: Entry[];
+
   bullets: Bullet[];
   signifiers: Signifier[];
+
   text_placeholder: String = "Texte de votre entrée";
   newEntryMonthly: Entry;
   timer: any;
@@ -40,33 +42,32 @@ export class MonthlyLogComponent {
   }
 
   changeDate(): void{
-    this.EntryService.getEntries_Date_Month(this.month).then(entries_day => this.entries_day = entries_day);
-    /*
-    var fullEntry = this.entries_day
-    this.entries_day = []
+    this.EntryService.getEntries_Date_Month(this.month)
+      .then(entries_day => {
+        this.entries_day = []
 
-    var date = new Date(this.month.toString())
-    var month = date.getMonth()+1
-    date.setMonth(month)
-    date.setDate(0)
-    var max = date.getDate()
+        var date = new Date(this.month.toString())
+        date.setMonth(date.getMonth()+1)
+        date.setDate(0)
+        var max = date.getDate()
 
-    for(let i = 0;i < max;i++) {
-      var date_entry = new Entry()
-      date_entry.date = new Date(this.month.toString())
-      date_entry.date.setDate(i+1)
-      this.entries_day[i] = date_entry
-    }
+        for(let i = 0;i < max;i++) {
+          var date_entry = new Entry()
+          date_entry.date.setMonth(date.getMonth())
+          date_entry.date.setDate(i+1)
+          this.entries_day[i] = date_entry
+        }
 
-    for(let entry of fullEntry) {
-      var day = entry.date.getDate()
-      this.entries_day[day-1] = entry
-    }
-    */
+        for(let entry of entries_day) {
+          var day = (new Date(entry.date)).getDate()
+          this.entries_day[day-1] = entry
+        }
+      }
+    );
     this.EntryService.getEntries_Monthly(this.month).then(entries_month => this.entries_month = entries_month);
   }
 
-  tomorrowLog(event: any): void {
+  nextMonth(event: any): void {
     event.preventDefault()
     var dateObj = new Date(this.month.toString())
     dateObj.setMonth(dateObj.getMonth()+2)
@@ -75,10 +76,10 @@ export class MonthlyLogComponent {
     this.changeDate()
   }
 
-  yesterdayLog(event: any): void {
+  previousMonth(event: any): void {
     event.preventDefault()
     var dateObj = new Date(this.month.toString())
-    dateObj.setDate(dateObj.getDate()-1)
+    dateObj.setMonth(dateObj.getMonth()-1)
 
     this.month = dateObj.toISOString().substr(0, 7)
     this.changeDate()

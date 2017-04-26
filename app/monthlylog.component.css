@@ -1,6 +1,5 @@
 body {
     background-color: #f5f5f5;
-    width: 600px;
     margin: 0 auto;
     padding: 0;
 }
@@ -27,6 +26,8 @@ h4 {
     height: auto;
     padding: 10px;
     text-transform: capitalize;
+    margin-right: 0px;
+    margin-left: 0px;
 }
 
 .list li:hover, .list li input:hover, .list li:hover>input, .list li:hover>select {
@@ -36,16 +37,16 @@ h4 {
     -ms-transition: all 0.2s;
     -o-transition: all 0.2s;
 }
-
+/*
 .lines {
     border-left: 1px solid #ffaa9f;
     border-right: 1px solid #ffaa9f;
     width: 2px;
     float: left;
-    height: 605px;
+    height: inherit;
     margin-left: 40px;
 }
-
+*/
 .pager li>a {
   font-size: 24px;
 }
@@ -57,10 +58,14 @@ h4 {
 
 input[type=text] {
     border-width: 0px;
-    width: 75%;
 }
 
 input[type=date] {
+    text-align: center;
+    border-width: 0px;
+}
+
+input[type=month] {
     text-align: center;
     border-width: 0px;
 }
@@ -89,4 +94,13 @@ input[type=date]::-webkit-inner-spin-button {
 input[type=date]::-webkit-calendar-picker-indicator {
     -webkit-appearance: none;
     display: none;
+}
+
+input[type=month]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
+}
+
+input[type=month]::-webkit-calendar-picker-indicator {
+    opacity: 100;
 }
