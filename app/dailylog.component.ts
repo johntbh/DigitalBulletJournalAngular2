@@ -33,18 +33,17 @@ export class DailyLogComponent {
       this.date = (new Date()).toISOString().substr(0, 10)
       this.newEntry = new Entry();
 
-
       this.getEntries();
     }
 
     getEntries(): void{
-      this.EntryService.getEntries_Date(this.date).then(entries => this.entries = entries);
+      this.EntryService.getEntries_Date_Day(this.date).then(entries => this.entries = entries);
       this.EntryService.getBullets().then(bullets => this.bullets = bullets);
       this.EntryService.getSignifers().then(signifiers => this.signifiers = signifiers);
     }
 
     changeDate(): void{
-      this.EntryService.getEntries_Date(this.date).then(entries => this.entries = entries);
+      this.EntryService.getEntries_Date_Day(this.date).then(entries => this.entries = entries);
     }
 
     tomorrowLog(event: any): void {
@@ -53,7 +52,7 @@ export class DailyLogComponent {
       dateObj.setDate(dateObj.getDate()+1)
 
       this.date = dateObj.toISOString().substr(0, 10)
-      this.EntryService.getEntries_Date(this.date).then(entries => this.entries = entries);
+      this.EntryService.getEntries_Date_Day(this.date).then(entries => this.entries = entries);
     }
 
     yesterdayLog(event: any): void {
@@ -62,7 +61,7 @@ export class DailyLogComponent {
       dateObj.setDate(dateObj.getDate()-1)
 
       this.date = dateObj.toISOString().substr(0, 10)
-      this.EntryService.getEntries_Date(this.date).then(entries => this.entries = entries);
+      this.EntryService.getEntries_Date_Day(this.date).then(entries => this.entries = entries);
     }
 
     addEntry(text: string) {

@@ -21,67 +21,95 @@ export class MonthlyLogComponent {
   bullets: Bullet[];
   signifiers: Signifier[];
   text_placeholder: String = "Texte de votre entrée";
-  newEntryMonth: Entry;
+  newEntryMonthly: Entry;
   timer: any;
 
   constructor(private EntryService: EntryService) { }
 
   ngOnInit(): void {
     this.month = (new Date()).toISOString().substr(0, 7)
-    this.newEntryMonth = new Entry();
+    this.newEntryMonthly = new Entry();
 
     this.getEntries();
   }
 
   getEntries(): void{
-    this.EntryService.getEntries_Date(this.date).then(entries => this.entries = entries);
     this.EntryService.getBullets().then(bullets => this.bullets = bullets);
     this.EntryService.getSignifers().then(signifiers => this.signifiers = signifiers);
+    this.changeDate()
   }
 
   changeDate(): void{
-    this.EntryService.getEntries_Date(this.date).then(entries => this.entries = entries);
+    this.EntryService.getEntries_Date_Month(this.month).then(entries_day => this.entries_day = entries_day);
+    /*
+    var fullEntry = this.entries_day
+    this.entries_day = []
+
+    var date = new Date(this.month.toString())
+    var month = date.getMonth()+1
+    date.setMonth(month)
+    date.setDate(0)
+    var max = date.getDate()
+
+    for(let i = 0;i < max;i++) {
+      var date_entry = new Entry()
+      date_entry.date = new Date(this.month.toString())
+      date_entry.date.setDate(i+1)
+      this.entries_day[i] = date_entry
+    }
+
+    for(let entry of fullEntry) {
+      var day = entry.date.getDate()
+      this.entries_day[day-1] = entry
+    }
+    */
+    this.EntryService.getEntries_Monthly(this.month).then(entries_month => this.entries_month = entries_month);
   }
 
   tomorrowLog(event: any): void {
     event.preventDefault()
-    var dateObj = new Date(this.date.toString())
-    dateObj.setDate(dateObj.getDate()+1)
+    var dateObj = new Date(this.month.toString())
+    dateObj.setMonth(dateObj.getMonth()+2)
 
-    this.date = dateObj.toISOString().substr(0, 10)
-    this.EntryService.getEntries_Date(this.date).then(entries => this.entries = entries);
+    this.month = dateObj.toISOString().substr(0, 7)
+    this.changeDate()
   }
 
   yesterdayLog(event: any): void {
     event.preventDefault()
-    var dateObj = new Date(this.date.toString())
+    var dateObj = new Date(this.month.toString())
     dateObj.setDate(dateObj.getDate()-1)
 
-    this.date = dateObj.toISOString().substr(0, 10)
-    this.EntryService.getEntries_Date(this.date).then(entries => this.entries = entries);
+    this.month = dateObj.toISOString().substr(0, 7)
+    this.changeDate()
   }
 
-  addEntry(text: string) {
-      this.EntryService.addEntry(this.newEntry).then(fullEntry => {
-          this.entries.push(fullEntry);
-          this.newEntry = new Entry();
-      });
+  addMonthEntry(entry: Entry) {
+    entry.monthly = true
+    this.EntryService.addEntry(entry).then(fullEntry => {
+        var index = this.entries_day.indexOf(entry)
+        this.entries_day[index] = fullEntry
+    });
+  }
+
+  addMonthlyEntry() {
+    this.newEntryMonthly.monthly = true;
+    this.newEntryMonthly.futur = true;
+    this.EntryService.addEntry(this.newEntryMonthly).then(fullEntry => {
+        this.entries_month.push(fullEntry);
+        this.newEntryMonthly = new Entry();
+    });
   }
 
   updateEntry(entry: Entry) {
     clearTimeout(this.timer);
-    this.timer = setTimeout(
-      () => {
-        console.log(entry.text);
-        this.EntryService.updateEntry(entry);
-    }, 500);
-    console.log(this.bullets)
+    this.timer = setTimeout(() => this.EntryService.updateEntry(entry), 500);
   }
 
   removeEntry(entry: Entry) {
       this.EntryService.deleteEntry(entry).then(() => {
-          var index = this.entries.indexOf(entry);
-          this.entries.splice(index, 1);
+          var index = this.entries_month.indexOf(entry);
+          this.entries_month.splice(index, 1);
       });
   }
 

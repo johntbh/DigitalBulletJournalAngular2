@@ -9,6 +9,8 @@ var Entry = (function () {
         this.bullet = BULLET_TASK_STANDARD;
         this.signifier = SIGNIFIER_NO_SIGNIFIER;
         this.date = new Date();
+        this.monthly = false;
+        this.futur = false;
     }
     return Entry;
 }());

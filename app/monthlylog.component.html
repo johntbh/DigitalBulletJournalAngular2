@@ -5,34 +5,57 @@
     <div class="lines"></div>
 
     <ul class="list">
-        <li>Eat Breakfeast Monthly</li>
-        <li>Feed Pugsly, the cow</li>
-        <li>Sit Down</li>
-        <li>Eat lunch</li>
-        <li>Call mom</li>
-        <li>Tweet about feeding my cow, pugsly</li>
-        <li>Join a hangout in google+</li>
-        <li>Prepare Dinner</li>
-        <li>Eat Dinner</li>
-        <li>Get ready for bed</li>
-        <li>Go to bed</li>
+      <li *ngFor="let entry of entries_day">
+
+        {{entry.date | date:'dd'}}
+
+        <select (change)="updateEntry(entry)" [(ngModel)]="entry.signifier">
+          <option *ngFor="let signifier of signifiers" [ngValue]="signifier.id" [selected]="signifier.id===entry.signifier" title="{{signifier.description}}">{{signifier.caractere}}</option>
+        </select>
+
+        <select (change)="updateEntry(entry)" [(ngModel)]="entry.bullet">
+          <option *ngFor="let bullet of bullets" [ngValue]="bullet.id" [selected]="bullet.id===entry.bullet" title="{{bullet.description}}">{{bullet.caractere}}</option>
+        </select>
+
+        <input [(ngModel)]="entry.text" type="text" placeholder="{{text_placeholder}}" (keyup)="updateEntry(entry)" />
+        <button *ngIf="entry.id!==0" (click)="removeEntry(entry)">X</button>
+        <button *ngIf="entry.id===0" (click)="addMonthEntry(entry)">Ajouter</button>
+
+      </li>
     </ul>
   </div>
   <div class="col-md-6">
     <div class="lines"></div>
 
     <ul class="list">
-        <li>Eat Breakfeast Monthly</li>
-        <li>Feed Pugsly, the cow</li>
-        <li>Sit Down</li>
-        <li>Eat lunch</li>
-        <li>Call mom</li>
-        <li>Tweet about feeding my cow, pugsly</li>
-        <li>Join a hangout in google+</li>
-        <li>Prepare Dinner</li>
-        <li>Eat Dinner</li>
-        <li>Get ready for bed</li>
-        <li>Go to bed</li>
+
+        <li *ngFor="let entry of entries_month">
+
+          <select (change)="updateEntry(entry)" [(ngModel)]="entry.signifier">
+            <option *ngFor="let signifier of signifiers" [ngValue]="signifier.id" [selected]="signifier.id===entry.signifier" title="{{signifier.description}}">{{signifier.caractere}}</option>
+          </select>
+
+          <select (change)="updateEntry(entry)" [(ngModel)]="entry.bullet">
+            <option *ngFor="let bullet of bullets" [ngValue]="bullet.id" [selected]="bullet.id===entry.bullet" title="{{bullet.description}}">{{bullet.caractere}}</option>
+          </select>
+
+          <input [(ngModel)]="entry.text" type="text" placeholder="{{text_placeholder}}" (keyup)="updateEntry(entry)" />
+          <button (click)=removeEntry(entry)>X</button>
+
+        </li>
+        <li>
+          <select [(ngModel)]="newEntryMonthly.signifier">
+            <option *ngFor="let signifier of signifiers" [ngValue]="signifier.id" [selected]="signifier.id===signifiers[0].id" title="{{signifier.description}}">{{signifier.caractere}}</option>
+          </select>
+
+          <select [(ngModel)]="newEntryMonthly.bullet">
+            <option *ngFor="let bullet of bullets" [ngValue]="bullet.id" [selected]="bullet.id===bullets[0].id" title="{{bullet.description}}">{{bullet.caractere}}</option>
+          </select>
+
+          <input [(ngModel)]="newEntryMonthly.text" type="text" placeholder="{{text_placeholder}}" />
+
+        </li>
     </ul>
+    <button (click)=addMonthlyEntry()>Ajouter</button>
   </div>
 </div>

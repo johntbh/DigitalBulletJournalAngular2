@@ -10,12 +10,16 @@ const SIGNIFIER_NO_SIGNIFIER: Number = 5;
     bullet: Number;
     signifier: Number;
     date: Date;
-
+    monthly: Boolean;
+    futur: Boolean;
+    
     constructor() {
         this.id = 0;
         this.text = "";
         this.bullet = BULLET_TASK_STANDARD;
         this.signifier = SIGNIFIER_NO_SIGNIFIER;
         this.date = new Date();
+        this.monthly = false;
+        this.futur=false;
     }
 }

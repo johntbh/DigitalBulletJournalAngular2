@@ -23,13 +23,13 @@ var DailyLogComponent = (function () {
     };
     DailyLogComponent.prototype.getEntries = function () {
         var _this = this;
-        this.EntryService.getEntries_Date(this.date).then(function (entries) { return _this.entries = entries; });
+        this.EntryService.getEntries_Date_Day(this.date).then(function (entries) { return _this.entries = entries; });
         this.EntryService.getBullets().then(function (bullets) { return _this.bullets = bullets; });
         this.EntryService.getSignifers().then(function (signifiers) { return _this.signifiers = signifiers; });
     };
     DailyLogComponent.prototype.changeDate = function () {
         var _this = this;
-        this.EntryService.getEntries_Date(this.date).then(function (entries) { return _this.entries = entries; });
+        this.EntryService.getEntries_Date_Day(this.date).then(function (entries) { return _this.entries = entries; });
     };
     DailyLogComponent.prototype.tomorrowLog = function (event) {
         var _this = this;
@@ -37,7 +37,7 @@ var DailyLogComponent = (function () {
         var dateObj = new Date(this.date.toString());
         dateObj.setDate(dateObj.getDate() + 1);
         this.date = dateObj.toISOString().substr(0, 10);
-        this.EntryService.getEntries_Date(this.date).then(function (entries) { return _this.entries = entries; });
+        this.EntryService.getEntries_Date_Day(this.date).then(function (entries) { return _this.entries = entries; });
     };
     DailyLogComponent.prototype.yesterdayLog = function (event) {
         var _this = this;
@@ -45,7 +45,7 @@ var DailyLogComponent = (function () {
         var dateObj = new Date(this.date.toString());
         dateObj.setDate(dateObj.getDate() - 1);
         this.date = dateObj.toISOString().substr(0, 10);
-        this.EntryService.getEntries_Date(this.date).then(function (entries) { return _this.entries = entries; });
+        this.EntryService.getEntries_Date_Day(this.date).then(function (entries) { return _this.entries = entries; });
     };
     DailyLogComponent.prototype.addEntry = function (text) {
         var _this = this;

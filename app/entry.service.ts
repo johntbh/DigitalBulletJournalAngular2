@@ -22,8 +22,24 @@ export class EntryService {
           .catch(this.handleError);
     }
 
-    getEntries_Date(date: String): Promise<Entry[]> {
-      const url = `${this.entriesUrl}/date/${date}`;
+    getEntries_Date_Day(date: String): Promise<Entry[]> {
+      const url = `${this.entriesUrl}/date/day/${date}`;
+      return this.http.get(url)
+          .toPromise()
+          .then(response => response.json() as Entry[])
+          .catch(this.handleError);
+    }
+
+    getEntries_Date_Month(date: String): Promise<Entry[]> {
+      const url = `${this.entriesUrl}/date/month/${date}`;
+      return this.http.get(url)
+          .toPromise()
+          .then(response => response.json() as Entry[])
+          .catch(this.handleError);
+    }
+
+    getEntries_Monthly(date: String): Promise<Entry[]> {
+      const url = `${this.entriesUrl}/monthly/${date}`;
       return this.http.get(url)
           .toPromise()
           .then(response => response.json() as Entry[])

@@ -18,56 +18,83 @@ var MonthlyLogComponent = (function () {
     }
     MonthlyLogComponent.prototype.ngOnInit = function () {
         this.month = (new Date()).toISOString().substr(0, 7);
-        this.newEntryMonth = new entry_1.Entry();
+        this.newEntryMonthly = new entry_1.Entry();
         this.getEntries();
     };
     MonthlyLogComponent.prototype.getEntries = function () {
         var _this = this;
-        this.EntryService.getEntries_Date(this.date).then(function (entries) { return _this.entries = entries; });
         this.EntryService.getBullets().then(function (bullets) { return _this.bullets = bullets; });
         this.EntryService.getSignifers().then(function (signifiers) { return _this.signifiers = signifiers; });
+        this.changeDate();
     };
     MonthlyLogComponent.prototype.changeDate = function () {
         var _this = this;
-        this.EntryService.getEntries_Date(this.date).then(function (entries) { return _this.entries = entries; });
+        this.EntryService.getEntries_Date_Month(this.month).then(function (entries_day) { return _this.entries_day = entries_day; });
+        /*
+        var fullEntry = this.entries_day
+        this.entries_day = []
+    
+        var date = new Date(this.month.toString())
+        var month = date.getMonth()+1
+        date.setMonth(month)
+        date.setDate(0)
+        var max = date.getDate()
+    
+        for(let i = 0;i < max;i++) {
+          var date_entry = new Entry()
+          date_entry.date = new Date(this.month.toString())
+          date_entry.date.setDate(i+1)
+          this.entries_day[i] = date_entry
+        }
+    
+        for(let entry of fullEntry) {
+          var day = entry.date.getDate()
+          this.entries_day[day-1] = entry
+        }
+        */
+        this.EntryService.getEntries_Monthly(this.month).then(function (entries_month) { return _this.entries_month = entries_month; });
     };
     MonthlyLogComponent.prototype.tomorrowLog = function (event) {
-        var _this = this;
         event.preventDefault();
-        var dateObj = new Date(this.date.toString());
-        dateObj.setDate(dateObj.getDate() + 1);
-        this.date = dateObj.toISOString().substr(0, 10);
-        this.EntryService.getEntries_Date(this.date).then(function (entries) { return _this.entries = entries; });
+        var dateObj = new Date(this.month.toString());
+        dateObj.setMonth(dateObj.getMonth() + 2);
+        this.month = dateObj.toISOString().substr(0, 7);
+        this.changeDate();
     };
     MonthlyLogComponent.prototype.yesterdayLog = function (event) {
-        var _this = this;
         event.preventDefault();
-        var dateObj = new Date(this.date.toString());
+        var dateObj = new Date(this.month.toString());
         dateObj.setDate(dateObj.getDate() - 1);
-        this.date = dateObj.toISOString().substr(0, 10);
-        this.EntryService.getEntries_Date(this.date).then(function (entries) { return _this.entries = entries; });
+        this.month = dateObj.toISOString().substr(0, 7);
+        this.changeDate();
     };
-    MonthlyLogComponent.prototype.addEntry = function (text) {
+    MonthlyLogComponent.prototype.addMonthEntry = function (entry) {
         var _this = this;
-        this.EntryService.addEntry(this.newEntry).then(function (fullEntry) {
-            _this.entries.push(fullEntry);
-            _this.newEntry = new entry_1.Entry();
+        entry.monthly = true;
+        this.EntryService.addEntry(entry).then(function (fullEntry) {
+            var index = _this.entries_day.indexOf(entry);
+            _this.entries_day[index] = fullEntry;
+        });
+    };
+    MonthlyLogComponent.prototype.addMonthlyEntry = function () {
+        var _this = this;
+        this.newEntryMonthly.monthly = true;
+        this.newEntryMonthly.futur = true;
+        this.EntryService.addEntry(this.newEntryMonthly).then(function (fullEntry) {
+            _this.entries_month.push(fullEntry);
+            _this.newEntryMonthly = new entry_1.Entry();
         });
     };
     MonthlyLogComponent.prototype.updateEntry = function (entry) {
         var _this = this;
         clearTimeout(this.timer);
-        this.timer = setTimeout(function () {
-            console.log(entry.text);
-            _this.EntryService.updateEntry(entry);
-        }, 500);
-        console.log(this.bullets);
+        this.timer = setTimeout(function () { return _this.EntryService.updateEntry(entry); }, 500);
     };
     MonthlyLogComponent.prototype.removeEntry = function (entry) {
         var _this = this;
         this.EntryService.deleteEntry(entry).then(function () {
-            var index = _this.entries.indexOf(entry);
-            _this.entries.splice(index, 1);
+            var index = _this.entries_month.indexOf(entry);
+            _this.entries_month.splice(index, 1);
         });
     };
     MonthlyLogComponent = __decorate([

@@ -23,8 +23,22 @@ var EntryService = (function () {
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    EntryService.prototype.getEntries_Date = function (date) {
-        var url = this.entriesUrl + "/date/" + date;
+    EntryService.prototype.getEntries_Date_Day = function (date) {
+        var url = this.entriesUrl + "/date/day/" + date;
+        return this.http.get(url)
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    EntryService.prototype.getEntries_Date_Month = function (date) {
+        var url = this.entriesUrl + "/date/month/" + date;
+        return this.http.get(url)
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
+    EntryService.prototype.getEntries_Monthly = function (date) {
+        var url = this.entriesUrl + "/monthly/" + date;
         return this.http.get(url)
             .toPromise()
             .then(function (response) { return response.json(); })
