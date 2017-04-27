@@ -53,15 +53,15 @@ var MonthlyLogComponent = (function () {
     MonthlyLogComponent.prototype.nextMonth = function (event) {
         event.preventDefault();
         var dateObj = new Date(this.month.toString());
-        dateObj.setMonth(dateObj.getMonth() + 2);
-        this.month = dateObj.toISOString().substr(0, 7);
+        dateObj.setMonth(dateObj.getMonth() + 1);
+        this.month = dateObj.getFullYear() + '-' + ('0' + (dateObj.getMonth() + 1)).slice(-2);
         this.changeDate();
     };
     MonthlyLogComponent.prototype.previousMonth = function (event) {
         event.preventDefault();
         var dateObj = new Date(this.month.toString());
         dateObj.setMonth(dateObj.getMonth() - 1);
-        this.month = dateObj.toISOString().substr(0, 7);
+        this.month = dateObj.getFullYear() + '-' + ('0' + (dateObj.getMonth() + 1)).slice(-2);
         this.changeDate();
     };
     MonthlyLogComponent.prototype.addMonthEntry = function (entry) {

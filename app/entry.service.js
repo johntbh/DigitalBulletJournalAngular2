@@ -44,6 +44,13 @@ var EntryService = (function () {
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
+    EntryService.prototype.getEntries_Futur = function (date) {
+        var url = this.entriesUrl + "/futur/" + date;
+        return this.http.get(url)
+            .toPromise()
+            .then(function (response) { return response.json(); })
+            .catch(this.handleError);
+    };
     EntryService.prototype.getBullets = function () {
         var url = this.entriesUrl + "/bullet";
         return this.http.get(url)

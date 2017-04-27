@@ -17,6 +17,7 @@ var angular_sortablejs_1 = require('angular-sortablejs');
 var app_component_1 = require('./app.component');
 var dailylog_component_1 = require('./dailylog.component');
 var monthlylog_component_1 = require('./monthlylog.component');
+var futurlog_component_1 = require('./futurlog.component');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -32,7 +33,8 @@ var AppModule = (function () {
             declarations: [
                 app_component_1.AppComponent,
                 dailylog_component_1.DailyLogComponent,
-                monthlylog_component_1.MonthlyLogComponent
+                monthlylog_component_1.MonthlyLogComponent,
+                futurlog_component_1.FuturLogComponent
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

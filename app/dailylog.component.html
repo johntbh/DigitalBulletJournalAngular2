@@ -24,7 +24,7 @@
           </select>
 
           <input [(ngModel)]="entry.text" type="text" placeholder="{{text_placeholder}}" (keyup)="updateEntry(entry)" />
-          <button (click)=removeEntry(entry)>X</button>
+          <button (click)="removeEntry(entry)" class="btn btn-danger">X</button>
 
         </li>
         <li>
@@ -39,7 +39,8 @@
 
           <input [(ngModel)]="newEntry.text" type="text" placeholder="{{text_placeholder}}" />
 
+          <button (click)="addEntry()" class="btn btn-primary">Ajouter</button>
+
         </li>
     </ul>
-    <button (click)=addEntry()>Ajouter</button>
 </div>

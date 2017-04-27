@@ -11,6 +11,7 @@ import { SortablejsModule } from 'angular-sortablejs';
 import { AppComponent } from './app.component';
 import { DailyLogComponent } from './dailylog.component';
 import { MonthlyLogComponent } from './monthlylog.component';
+import { FuturLogComponent } from './futurlog.component';
 
 @NgModule({
     imports: [
@@ -23,7 +24,8 @@ import { MonthlyLogComponent } from './monthlylog.component';
   declarations: [
       AppComponent,
       DailyLogComponent,
-      MonthlyLogComponent
+      MonthlyLogComponent,
+      FuturLogComponent
   ],
   bootstrap:    [ AppComponent ]
 })

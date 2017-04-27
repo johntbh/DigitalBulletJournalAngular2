@@ -46,6 +46,14 @@ export class EntryService {
           .catch(this.handleError);
     }
 
+    getEntries_Futur(date: String): Promise<Entry[]> {
+      const url = `${this.entriesUrl}/futur/${date}`;
+      return this.http.get(url)
+          .toPromise()
+          .then(response => response.json() as Entry[])
+          .catch(this.handleError);
+    }
+
     getBullets(): Promise<Bullet[]> {
         const url = `${this.entriesUrl}/bullet`;
         return this.http.get(url)
