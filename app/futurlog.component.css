@@ -59,8 +59,16 @@ h4 {
   padding-left: 0px;
 }
 
+.futur>.left_side {
+  padding-right: 0px;
+}
+
 .month_name {
   padding: 10px;
+}
+
+.row.futur {
+  margin-right: 0px;
 }
 
 /*                                */

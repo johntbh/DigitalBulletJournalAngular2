@@ -22,17 +22,17 @@
       <ul class="list">
         <li *ngFor="let entry of entries_futur[i]" class="row">
 
-          <div class="col-md-1">
-            {{entry_day.date | date:'dd'}}
+          <div class="col-md-3">
+            {{entry.date | date:'dd'}}
+
+            <select (change)="updateEntry(entry)" [(ngModel)]="entry.signifier">
+              <option *ngFor="let signifier of signifiers" [ngValue]="signifier.id" [selected]="signifier.id===entry.signifier" title="{{signifier.description}}">{{signifier.caractere}}</option>
+            </select>
+
+            <select (change)="updateEntry(entry)" [(ngModel)]="entry.bullet">
+              <option *ngFor="let bullet of bullets" [ngValue]="bullet.id" [selected]="bullet.id===entry.bullet" title="{{bullet.description}}">{{bullet.caractere}}</option>
+            </select>
           </div>
-
-          <select (change)="updateEntry(entry)" [(ngModel)]="entry.signifier" class="col-md-1">
-            <option *ngFor="let signifier of signifiers" [ngValue]="signifier.id" [selected]="signifier.id===entry_day.signifier" title="{{signifier.description}}">{{signifier.caractere}}</option>
-          </select>
-
-          <select (change)="updateEntry(entry)" [(ngModel)]="entry.bullet" class="col-md-1">
-            <option *ngFor="let bullet of bullets" [ngValue]="bullet.id" [selected]="bullet.id===entry_day.bullet" title="{{bullet.description}}">{{bullet.caractere}}</option>
-          </select>
 
           <input [(ngModel)]="entry.text" type="text" placeholder="{{text_placeholder}}" (keyup)="updateEntry(entry)" class="col-md-7" />
 
@@ -43,17 +43,19 @@
         </li>
         <!-- <li><div style="opacity:0;">void</div></li> -->
         <li class="row">
-          <select class="col-md-1">
-            <option *ngFor="let day of getDayInMonth(i)" [ngValue]="day">{{day}}</option>
-          </select>
+          <div class="col-md-3">
+            <select [(ngModel)]="entry_futur[i].day">
+              <option *ngFor="let day of getDayInMonth(i)" [ngValue]="day">{{day}}</option>
+            </select>
 
-          <select [(ngModel)]="entry_futur[i].signifier" class="col-md-1">
-            <option *ngFor="let signifier of signifiers" [ngValue]="signifier.id" [selected]="signifier.id===signifiers[0].id" title="{{signifier.description}}">{{signifier.caractere}}</option>
-          </select>
+            <select [(ngModel)]="entry_futur[i].signifier">
+              <option *ngFor="let signifier of signifiers" [ngValue]="signifier.id" [selected]="signifier.id===signifiers[0].id" title="{{signifier.description}}">{{signifier.caractere}}</option>
+            </select>
 
-          <select [(ngModel)]="entry_futur[i].bullet" class="col-md-1">
-            <option *ngFor="let bullet of bullets" [ngValue]="bullet.id" [selected]="bullet.id===bullets[0].id" title="{{bullet.description}}">{{bullet.caractere}}</option>
-          </select>
+            <select [(ngModel)]="entry_futur[i].bullet">
+              <option *ngFor="let bullet of bullets" [ngValue]="bullet.id" [selected]="bullet.id===bullets[0].id" title="{{bullet.description}}">{{bullet.caractere}}</option>
+            </select>
+          </div>
 
           <input [(ngModel)]="entry_futur[i].text" type="text" placeholder="{{text_placeholder}}" class="col-md-7"/>
 
@@ -73,44 +75,50 @@
         {{getMonthYear(i)}}
       </div>
       <ul class="list">
+        <li *ngFor="let entry of entries_futur[i]" class="row">
 
-          <li *ngFor="let entry of entries_futur[i]" class="row">
+          <div class="col-md-3">
+            {{entry.date | date:'dd'}}
 
-            <div class="col-md-1">
-              {{entry_day.date | date:'dd'}}
-            </div>
-
-            <select (change)="updateEntry(entry)" [(ngModel)]="entry.signifier" class="col-md-1">
+            <select (change)="updateEntry(entry)" [(ngModel)]="entry.signifier">
               <option *ngFor="let signifier of signifiers" [ngValue]="signifier.id" [selected]="signifier.id===entry.signifier" title="{{signifier.description}}">{{signifier.caractere}}</option>
             </select>
 
-            <select (change)="updateEntry(entry)" [(ngModel)]="entry.bullet" class="col-md-1">
+            <select (change)="updateEntry(entry)" [(ngModel)]="entry.bullet">
               <option *ngFor="let bullet of bullets" [ngValue]="bullet.id" [selected]="bullet.id===entry.bullet" title="{{bullet.description}}">{{bullet.caractere}}</option>
             </select>
+          </div>
 
-            <input [(ngModel)]="entry.text" type="text" placeholder="{{text_placeholder}}" (keyup)="updateEntry(entry)" class="col-md-7"/>
+          <input [(ngModel)]="entry.text" type="text" placeholder="{{text_placeholder}}" (keyup)="updateEntry(entry)" class="col-md-7" />
 
-            <div class="col-md-2 text-center">
-              <button (click)="removeEntry(entry)" class="btn btn-danger">X</button>
-            </div>
+          <div class="col-md-2 text-center">
+            <button (click)="removeEntry(entry,i)" class="btn btn-danger">X</button>
+          </div>
 
-          </li>
-          <li class="row">
-            <select [(ngModel)]="entry_futur[i].signifier" class="col-md-1">
+        </li>
+        <!-- <li><div style="opacity:0;">void</div></li> -->
+        <li class="row">
+          <div class="col-md-3">
+            <select [(ngModel)]="entry_futur[i].day">
+              <option *ngFor="let day of getDayInMonth(i)" [ngValue]="day">{{day}}</option>
+            </select>
+
+            <select [(ngModel)]="entry_futur[i].signifier">
               <option *ngFor="let signifier of signifiers" [ngValue]="signifier.id" [selected]="signifier.id===signifiers[0].id" title="{{signifier.description}}">{{signifier.caractere}}</option>
             </select>
 
-            <select [(ngModel)]="entry_futur[i].bullet" class="col-md-1">
+            <select [(ngModel)]="entry_futur[i].bullet">
               <option *ngFor="let bullet of bullets" [ngValue]="bullet.id" [selected]="bullet.id===bullets[0].id" title="{{bullet.description}}">{{bullet.caractere}}</option>
             </select>
+          </div>
 
-            <input [(ngModel)]="entry_futur[i].text" type="text" placeholder="{{text_placeholder}}" class="col-md-8"/>
+          <input [(ngModel)]="entry_futur[i].text" type="text" placeholder="{{text_placeholder}}" class="col-md-7"/>
 
-            <div class="col-md-2 text-center">
-              <button (click)="addFuturEntry(i)" class="btn btn-primary">Ajouter</button>
-            </div>
+          <div class="col-md-2 text-center">
+            <button (click)="addFuturEntry(i)" class="btn btn-primary">Ajouter</button>
+          </div>
 
-          </li>
+        </li>
       </ul>
     </div>
   </div>

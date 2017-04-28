@@ -41,7 +41,8 @@ var FuturLogComponent = (function () {
             _this.entry_futur = [];
             for (var i = 0; i < _this.futur_month_number; i++) {
                 _this.entries_futur.push([]);
-                _this.entry_futur.push(_this.getNewEntryWithDateInMonth(index));
+                _this.entry_futur.push(_this.getNewEntryWithDateInMonth(i));
+                console.log(_this.entry_futur);
             }
             var month_year = _this.getMonthYearFromDate(_this.month_date);
             for (var _i = 0, entries_futur_1 = entries_futur; _i < entries_futur_1.length; _i++) {
@@ -67,6 +68,7 @@ var FuturLogComponent = (function () {
     };
     FuturLogComponent.prototype.addFuturEntry = function (index) {
         var _this = this;
+        this.entry_futur[index].date.setDate(this.entry_futur[index].day.valueOf());
         this.entry_futur[index].futur = true;
         this.EntryService.addEntry(this.entry_futur[index]).then(function (fullEntry) {
             _this.entries_futur[index].push(fullEntry);
@@ -96,7 +98,11 @@ var FuturLogComponent = (function () {
     FuturLogComponent.prototype.getNewEntryWithDateInMonth = function (plus_month) {
         var newEntry = new entry_1.Entry();
         var date_entry = new Date(this.month_date);
+        console.log(plus_month);
+        console.log(date_entry);
         date_entry.setMonth(date_entry.getMonth() + plus_month);
+        console.log(date_entry);
+        newEntry.date = date_entry;
         return newEntry;
     };
     FuturLogComponent.prototype.getMonthYearFromDate = function (date_input) {

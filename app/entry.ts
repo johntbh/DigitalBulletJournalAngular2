@@ -12,7 +12,8 @@ const SIGNIFIER_NO_SIGNIFIER: Number = 5;
     date: Date;
     monthly: Boolean;
     futur: Boolean;
-    
+    day: Number;
+
     constructor() {
         this.id = 0;
         this.text = "";

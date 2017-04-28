@@ -16,11 +16,16 @@ import { EntryService } from './entry.service';
 
 // TODO: show first day not used for new entry in each month_name
 
-// TODO: bind the select day to the entry
-
 // TODO: disable or remove the day already used in each month
 
-// TODO: check the presence of futur in daily
+// TODO: add a search engine with parameter
+
+// TODO: add a collection page
+
+// TODO: add personalized signifier and bullet
+
+// TODO: WARNING = integrate ANGULAR2 on VPS
+// TODO: WARNING = integrate user/login external code
 
 export class FuturLogComponent {
 
@@ -63,7 +68,8 @@ export class FuturLogComponent {
         this.entry_futur = []
         for(let i=0;i<this.futur_month_number;i++){
           this.entries_futur.push([])
-          this.entry_futur.push(this.getNewEntryWithDateInMonth(index))
+          this.entry_futur.push(this.getNewEntryWithDateInMonth(i))
+          console.log(this.entry_futur)
         }
 
         var month_year = this.getMonthYearFromDate(this.month_date)
@@ -91,6 +97,7 @@ export class FuturLogComponent {
   }
 
   addFuturEntry(index: number) {
+    this.entry_futur[index].date.setDate(this.entry_futur[index].day.valueOf())
     this.entry_futur[index].futur = true
     this.EntryService.addEntry(this.entry_futur[index]).then(fullEntry => {
       this.entries_futur[index].push(fullEntry)
@@ -122,7 +129,11 @@ export class FuturLogComponent {
   getNewEntryWithDateInMonth(plus_month: number): Entry {
     var newEntry = new Entry();
     var date_entry = new Date(this.month_date)
+    console.log(plus_month)
+    console.log(date_entry)
     date_entry.setMonth(date_entry.getMonth()+plus_month)
+    console.log(date_entry)
+    newEntry.date = date_entry
     return newEntry
   }
 
