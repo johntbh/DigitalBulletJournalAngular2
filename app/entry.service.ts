@@ -4,6 +4,7 @@ import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { Entry } from './entry';
+import { Type } from './type';
 import { Bullet } from './bullet';
 import { Signifier } from './signifier';
 
@@ -67,6 +68,14 @@ export class EntryService {
         return this.http.get(url)
             .toPromise()
             .then(response => response.json() as Signifier[])
+            .catch(this.handleError);
+    }
+
+    getTypes(): Promise<Type[]> {
+        const url = `${this.entriesUrl}/type`;
+        return this.http.get(url)
+            .toPromise()
+            .then(response => response.json() as Type[])
             .catch(this.handleError);
     }
 

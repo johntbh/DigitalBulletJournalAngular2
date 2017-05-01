@@ -12,6 +12,8 @@ import { AppComponent } from './app.component';
 import { DailyLogComponent } from './dailylog.component';
 import { MonthlyLogComponent } from './monthlylog.component';
 import { FuturLogComponent } from './futurlog.component';
+import { SearchEntryComponent } from './searchentry.component';
+import { CollectionComponent } from './collection.component';
 
 @NgModule({
     imports: [
@@ -25,7 +27,9 @@ import { FuturLogComponent } from './futurlog.component';
       AppComponent,
       DailyLogComponent,
       MonthlyLogComponent,
-      FuturLogComponent
+      FuturLogComponent,
+      SearchEntryComponent,
+      CollectionComponent
   ],
   bootstrap:    [ AppComponent ]
 })

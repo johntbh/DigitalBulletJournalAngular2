@@ -4,11 +4,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { DailyLogComponent } from './dailylog.component';
 import { MonthlyLogComponent } from './monthlylog.component';
 import { FuturLogComponent } from './futurlog.component';
+import { SearchEntryComponent } from './searchentry.component';
+import { CollectionComponent } from './collection.component';
 
 const routes: Routes = [
     { path: 'dailylog', component: DailyLogComponent },
     { path: 'monthlylog', component: MonthlyLogComponent },
     { path: 'futurlog', component: FuturLogComponent },
+    { path: 'searchentry', component: SearchEntryComponent },
+    { path: 'collection', component: CollectionComponent },
     /*{ path: '', redirectTo: '/dailylog', pathMatch: 'full' }*/
 ];
 

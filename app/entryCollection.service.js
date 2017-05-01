@@ -11,105 +11,99 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 require('rxjs/add/operator/toPromise');
-var EntryService = (function () {
-    function EntryService(http) {
+var EntryCollectionService = (function () {
+    function EntryCollectionService(http) {
         this.http = http;
-        this.entriesUrl = 'http://digitalbulletjournal.xyz/api/entry'; // URL to web api
+        this.entriesUrl = 'http://digitalbulletjournal.xyz/api/entryCollection'; //Ajout Numan : URL to web api
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json' });
     }
-    EntryService.prototype.getEntries = function () {
+    //Ajout Numan
+    EntryCollectionService.prototype.getEntriesCollection = function () {
         return this.http.get(this.entriesUrl)
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    EntryService.prototype.getEntries_Date_Day = function (date) {
-        var url = this.entriesUrl + "/date/day/" + date;
+    //Ajout Numan
+    EntryCollectionService.prototype.getEntriesCollection_idCollection = function (idCollection) {
+        var url = this.entriesUrl + "/collection/idCollection/" + idCollection;
         return this.http.get(url)
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    EntryService.prototype.getEntries_Date_Month = function (date) {
-        var url = this.entriesUrl + "/date/month/" + date;
+    //Ajout Numan
+    /*getEntriesCollection_Collection(nomCollection: String): Promise<EntryCollection[]> {
+      const url = `${this.entriesUrl}/collection/nomCollection/${nomCollection}`;
+      return this.http.get(url)
+          .toPromise()
+          .then(response => response.json() as EntryCollection[])
+          .catch(this.handleError);
+    }*/
+    //Ajout Numan
+    EntryCollectionService.prototype.getEntriesCollection_Collection = function (collection) {
+        var url = this.entriesUrl + "/collection/idCollection/" + collection.idCollection;
         return this.http.get(url)
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    EntryService.prototype.getEntries_Monthly = function (date) {
-        var url = this.entriesUrl + "/monthly/" + date;
+    EntryCollectionService.prototype.getBullets = function () {
+        var url = "http://digitalbulletjournal.xyz/api/entry" + "/bullet";
         return this.http.get(url)
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    EntryService.prototype.getEntries_Futur = function (date) {
-        var url = this.entriesUrl + "/futur/" + date;
+    EntryCollectionService.prototype.getSignifers = function () {
+        var url = "http://digitalbulletjournal.xyz/api/entry" + "/signifier";
         return this.http.get(url)
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    EntryService.prototype.getBullets = function () {
-        var url = this.entriesUrl + "/bullet";
+    //Ajout Numan
+    EntryCollectionService.prototype.getEntryCollection = function (idEntryCollection) {
+        var url = this.entriesUrl + "/id/" + idEntryCollection;
         return this.http.get(url)
             .toPromise()
             .then(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    EntryService.prototype.getSignifers = function () {
-        var url = this.entriesUrl + "/signifier";
-        return this.http.get(url)
-            .toPromise()
-            .then(function (response) { return response.json(); })
-            .catch(this.handleError);
-    };
-    EntryService.prototype.getTypes = function () {
-        var url = this.entriesUrl + "/type";
-        return this.http.get(url)
-            .toPromise()
-            .then(function (response) { return response.json(); })
-            .catch(this.handleError);
-    };
-    EntryService.prototype.getEntry = function (id) {
-        var url = this.entriesUrl + "/id/" + id;
-        return this.http.get(url)
-            .toPromise()
-            .then(function (response) { return response.json(); })
-            .catch(this.handleError);
-    };
-    EntryService.prototype.addEntry = function (entry) {
+    //Ajout Numan
+    EntryCollectionService.prototype.addEntryCollection = function (entryCollection) {
         return this.http
-            .put(this.entriesUrl, JSON.stringify(entry), { headers: this.headers })
+            .put(this.entriesUrl, JSON.stringify(entryCollection), { headers: this.headers })
             .toPromise()
             .then(function (res) { return res.json(); })
             .catch(this.handleError);
     };
-    EntryService.prototype.deleteEntry = function (entry) {
-        var url = this.entriesUrl + "/id/" + entry.id;
+    //Ajout Numan
+    EntryCollectionService.prototype.deleteEntryCollection = function (entryCollection) {
+        var url = this.entriesUrl + "/id/" + entryCollection.id;
         return this.http.delete(url, { headers: this.headers })
             .toPromise()
             .then(function () { return null; })
             .catch(this.handleError);
     };
-    EntryService.prototype.updateEntry = function (entry) {
-        var url = this.entriesUrl + "/id/" + entry.id;
+    //Ajout Numan
+    EntryCollectionService.prototype.updateEntryCollection = function (entryCollection) {
+        var url = this.entriesUrl + "/id/" + entryCollection.id;
         return this.http
-            .post(url, JSON.stringify(entry), { headers: this.headers })
+            .post(url, JSON.stringify(entryCollection), { headers: this.headers })
             .toPromise()
-            .then(function () { return entry; })
+            .then(function () { return entryCollection; })
             .catch(this.handleError);
     };
-    EntryService.prototype.handleError = function (error) {
+    EntryCollectionService.prototype.handleError = function (error) {
         console.error('An error occurred', error); // for demo purposes only
         return Promise.reject(error.message || error);
     };
-    EntryService = __decorate([
+    EntryCollectionService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])
-    ], EntryService);
-    return EntryService;
+    ], EntryCollectionService);
+    return EntryCollectionService;
 }());
-exports.EntryService = EntryService;
-//# sourceMappingURL=entry.service.js.map
+exports.EntryCollectionService = EntryCollectionService;
+//# sourceMappingURL=entryCollection.service.js.map

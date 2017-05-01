@@ -66,27 +66,38 @@ var MonthlyLogComponent = (function () {
     };
     MonthlyLogComponent.prototype.addMonthEntry = function (entry) {
         var _this = this;
-        entry.monthly = true;
-        this.EntryService.addEntry(entry).then(function (fullEntry) {
-            var index = _this.entries_day.indexOf(entry);
-            _this.entries_day[index] = fullEntry;
-        });
+        if (entry.text.trim()) {
+            entry.monthly = true;
+            this.EntryService.addEntry(entry).then(function (fullEntry) {
+                var index = _this.entries_day.indexOf(entry);
+                _this.entries_day[index] = fullEntry;
+            });
+        }
     };
     MonthlyLogComponent.prototype.addMonthlyEntry = function () {
         var _this = this;
-        this.newEntryMonthly.monthly = true;
-        this.newEntryMonthly.futur = true;
-        this.EntryService.addEntry(this.newEntryMonthly).then(function (fullEntry) {
-            _this.entries_month.push(fullEntry);
-            _this.newEntryMonthly = new entry_1.Entry();
-        });
+        if (this.newEntryMonthly.text.trim()) {
+            this.newEntryMonthly.monthly = true;
+            this.newEntryMonthly.futur = true;
+            this.EntryService.addEntry(this.newEntryMonthly).then(function (fullEntry) {
+                _this.entries_month.push(fullEntry);
+                _this.newEntryMonthly = new entry_1.Entry();
+            });
+        }
     };
     MonthlyLogComponent.prototype.updateEntry = function (entry) {
         var _this = this;
         clearTimeout(this.timer);
         this.timer = setTimeout(function () { return _this.EntryService.updateEntry(entry); }, 500);
     };
-    MonthlyLogComponent.prototype.removeEntry = function (entry) {
+    MonthlyLogComponent.prototype.removeMonthEntry = function (entry) {
+        var _this = this;
+        this.EntryService.deleteEntry(entry).then(function () {
+            var index = _this.entries_day.indexOf(entry);
+            _this.entries_day.splice(index, 1);
+        });
+    };
+    MonthlyLogComponent.prototype.removeMonthlyEntry = function (entry) {
         var _this = this;
         this.EntryService.deleteEntry(entry).then(function () {
             var index = _this.entries_month.indexOf(entry);

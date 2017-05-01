@@ -4,6 +4,7 @@ var Bullet = (function () {
         this.id = 0;
         this.description = "";
         this.caractere = "";
+        this.selected = false;
     }
     return Bullet;
 }());

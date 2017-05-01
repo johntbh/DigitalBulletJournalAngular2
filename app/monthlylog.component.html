@@ -30,7 +30,7 @@
         <input [(ngModel)]="entry_day.text" type="text" placeholder="{{text_placeholder}}" (keyup)="updateEntry(entry_day)" class="col-md-7" />
 
         <div class="col-md-2 text-center">
-          <button type="button" *ngIf="entry_day.id!==0" (click)="removeEntry(entry_day)" class="btn btn-danger">X</button>
+          <button type="button" *ngIf="entry_day.id!==0" (click)="removeMonthEntry(entry_day)" class="btn btn-danger">X</button>
           <button type="button" *ngIf="entry_day.id===0" (click)="addMonthEntry(entry_day)" class="btn btn-primary">Ajouter</button>
         </div>
 
@@ -56,7 +56,7 @@
           <input [(ngModel)]="entry.text" type="text" placeholder="{{text_placeholder}}" (keyup)="updateEntry(entry)" class="col-md-8"/>
 
           <div class="col-md-2 text-center">
-            <button (click)="removeEntry(entry)" class="btn btn-danger">X</button>
+            <button (click)="removeMonthlyEntry(entry)" class="btn btn-danger">X</button>
           </div>
 
         </li>

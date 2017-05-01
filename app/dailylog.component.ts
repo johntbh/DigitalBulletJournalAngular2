@@ -3,6 +3,7 @@
 import { Entry } from './entry';
 import { Bullet } from './bullet';
 import { Signifier } from './signifier';
+
 import { EntryService } from './entry.service';
 
 @Component({

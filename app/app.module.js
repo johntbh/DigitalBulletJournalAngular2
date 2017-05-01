@@ -18,6 +18,8 @@ var app_component_1 = require('./app.component');
 var dailylog_component_1 = require('./dailylog.component');
 var monthlylog_component_1 = require('./monthlylog.component');
 var futurlog_component_1 = require('./futurlog.component');
+var searchentry_component_1 = require('./searchentry.component');
+var collection_component_1 = require('./collection.component');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -34,7 +36,9 @@ var AppModule = (function () {
                 app_component_1.AppComponent,
                 dailylog_component_1.DailyLogComponent,
                 monthlylog_component_1.MonthlyLogComponent,
-                futurlog_component_1.FuturLogComponent
+                futurlog_component_1.FuturLogComponent,
+                searchentry_component_1.SearchEntryComponent,
+                collection_component_1.CollectionComponent
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

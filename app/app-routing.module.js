@@ -13,10 +13,14 @@ var router_1 = require('@angular/router');
 var dailylog_component_1 = require('./dailylog.component');
 var monthlylog_component_1 = require('./monthlylog.component');
 var futurlog_component_1 = require('./futurlog.component');
+var searchentry_component_1 = require('./searchentry.component');
+var collection_component_1 = require('./collection.component');
 var routes = [
     { path: 'dailylog', component: dailylog_component_1.DailyLogComponent },
     { path: 'monthlylog', component: monthlylog_component_1.MonthlyLogComponent },
     { path: 'futurlog', component: futurlog_component_1.FuturLogComponent },
+    { path: 'searchentry', component: searchentry_component_1.SearchEntryComponent },
+    { path: 'collection', component: collection_component_1.CollectionComponent },
 ];
 var AppRoutingModule = (function () {
     function AppRoutingModule() {

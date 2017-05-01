@@ -84,20 +84,24 @@ export class MonthlyLogComponent {
   }
 
   addMonthEntry(entry: Entry) {
-    entry.monthly = true
-    this.EntryService.addEntry(entry).then(fullEntry => {
-        var index = this.entries_day.indexOf(entry)
-        this.entries_day[index] = fullEntry
-    });
+    if(entry.text.trim()) {
+      entry.monthly = true
+      this.EntryService.addEntry(entry).then(fullEntry => {
+          var index = this.entries_day.indexOf(entry)
+          this.entries_day[index] = fullEntry
+      });
+    }
   }
 
   addMonthlyEntry() {
-    this.newEntryMonthly.monthly = true;
-    this.newEntryMonthly.futur = true;
-    this.EntryService.addEntry(this.newEntryMonthly).then(fullEntry => {
-        this.entries_month.push(fullEntry);
-        this.newEntryMonthly = new Entry();
-    });
+    if(this.newEntryMonthly.text.trim()) {
+      this.newEntryMonthly.monthly = true;
+      this.newEntryMonthly.futur = true;
+      this.EntryService.addEntry(this.newEntryMonthly).then(fullEntry => {
+          this.entries_month.push(fullEntry);
+          this.newEntryMonthly = new Entry();
+      });
+    }
   }
 
   updateEntry(entry: Entry) {
@@ -105,7 +109,14 @@ export class MonthlyLogComponent {
     this.timer = setTimeout(() => this.EntryService.updateEntry(entry), 500);
   }
 
-  removeEntry(entry: Entry) {
+  removeMonthEntry(entry: Entry) {
+      this.EntryService.deleteEntry(entry).then(() => {
+          var index = this.entries_day.indexOf(entry);
+          this.entries_day.splice(index, 1);
+      });
+  }
+
+  removeMonthlyEntry(entry: Entry) {
       this.EntryService.deleteEntry(entry).then(() => {
           var index = this.entries_month.indexOf(entry);
           this.entries_month.splice(index, 1);

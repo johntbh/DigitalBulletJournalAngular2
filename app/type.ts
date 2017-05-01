@@ -1,13 +1,13 @@
-export class Bullet {
+export class Type {
     id: Number;
+    nom: String;
     description: String;
-    caractere: String;
     selected: Boolean;
 
     constructor() {
         this.id = 0;
-        this.description = "";
-        this.caractere = "";
+        this.nom = "";
+        this.description = "";    
         this.selected = false;
     }
 }
