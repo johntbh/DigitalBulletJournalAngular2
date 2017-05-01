@@ -6,14 +6,14 @@ import { HttpModule } from '@angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
 
-import { SortablejsModule } from 'angular-sortablejs';
+// import { SortablejsModule } from 'angular-sortablejs';
 
 import { AppComponent } from './app.component';
-import { DailyLogComponent } from './dailylog.component';
-import { MonthlyLogComponent } from './monthlylog.component';
-import { FuturLogComponent } from './futurlog.component';
-import { SearchEntryComponent } from './searchentry.component';
-import { CollectionComponent } from './collection.component';
+import { DailyLogComponent } from './dailylog/dailylog.component';
+import { MonthlyLogComponent } from './monthlylog/monthlylog.component';
+import { FuturLogComponent } from './futurlog/futurlog.component';
+import { SearchEntryComponent } from './searchentry/searchentry.component';
+import { CollectionComponent } from './collection/collection.component';
 
 @NgModule({
     imports: [
@@ -21,7 +21,7 @@ import { CollectionComponent } from './collection.component';
         FormsModule,
         HttpModule,
         AppRoutingModule,
-        SortablejsModule
+        //SortablejsModule
     ],
   declarations: [
       AppComponent,

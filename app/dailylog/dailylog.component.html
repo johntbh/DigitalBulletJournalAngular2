@@ -1,0 +1,46 @@
+﻿<h4 class="row pager">
+  <li class="col-md-offset-2 col-md-2 text-right">
+    <a href="yesterday" (click)=yesterdayLog()>Previous</a>
+  </li>
+  <input class="col-md-4" type="date" required="required" [(ngModel)]="date" (change)="changeDate()">
+  <li class="col-md-2">
+    <a href="tomorrow" (click)=tomorrowLog()>Next</a>
+  </li>
+</h4>
+
+<div class="lines"></div>
+
+<div *ngIf="entries">
+    <ul class="list">
+        <!-- Need to resize the input to wrap the content -->
+        <li *ngFor="let entry of entries">
+
+          <select (change)="updateEntry(entry)" [(ngModel)]="entry.signifier">
+            <option *ngFor="let signifier of signifiers" [ngValue]="signifier.id" [selected]="signifier.id===entry.signifier" title="{{signifier.description}}">{{signifier.caractere}}</option>
+          </select>
+
+          <select (change)="updateEntry(entry)" [(ngModel)]="entry.bullet">
+            <option *ngFor="let bullet of bullets" [ngValue]="bullet.id" [selected]="bullet.id===entry.bullet" title="{{bullet.description}}">{{bullet.caractere}}</option>
+          </select>
+
+          <input [(ngModel)]="entry.text" type="text" placeholder="{{text_placeholder}}" (keyup)="updateEntry(entry)" />
+          <button (click)="removeEntry(entry)" class="btn btn-danger">X</button>
+
+        </li>
+        <li>
+
+          <select [(ngModel)]="newEntry.signifier">
+            <option *ngFor="let signifier of signifiers" [ngValue]="signifier.id" [selected]="signifier.id===signifiers[0].id" title="{{signifier.description}}">{{signifier.caractere}}</option>
+          </select>
+
+          <select [(ngModel)]="newEntry.bullet">
+            <option *ngFor="let bullet of bullets" [ngValue]="bullet.id" [selected]="bullet.id===bullets[0].id" title="{{bullet.description}}">{{bullet.caractere}}</option>
+          </select>
+
+          <input [(ngModel)]="newEntry.text" type="text" placeholder="{{text_placeholder}}" />
+
+          <button (click)="addEntry()" class="btn btn-primary">Ajouter</button>
+
+        </li>
+    </ul>
+</div>

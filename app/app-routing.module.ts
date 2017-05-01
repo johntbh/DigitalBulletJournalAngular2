@@ -1,11 +1,11 @@
 ﻿import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { DailyLogComponent } from './dailylog.component';
-import { MonthlyLogComponent } from './monthlylog.component';
-import { FuturLogComponent } from './futurlog.component';
-import { SearchEntryComponent } from './searchentry.component';
-import { CollectionComponent } from './collection.component';
+import { DailyLogComponent } from './dailylog/dailylog.component';
+import { MonthlyLogComponent } from './monthlylog/monthlylog.component';
+import { FuturLogComponent } from './futurlog/futurlog.component';
+import { SearchEntryComponent } from './searchentry/searchentry.component';
+import { CollectionComponent } from './collection/collection.component';
 
 const routes: Routes = [
     { path: 'dailylog', component: DailyLogComponent },

@@ -13,13 +13,13 @@ var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
 var app_routing_module_1 = require('./app-routing.module');
-var angular_sortablejs_1 = require('angular-sortablejs');
+// import { SortablejsModule } from 'angular-sortablejs';
 var app_component_1 = require('./app.component');
-var dailylog_component_1 = require('./dailylog.component');
-var monthlylog_component_1 = require('./monthlylog.component');
-var futurlog_component_1 = require('./futurlog.component');
-var searchentry_component_1 = require('./searchentry.component');
-var collection_component_1 = require('./collection.component');
+var dailylog_component_1 = require('./dailylog/dailylog.component');
+var monthlylog_component_1 = require('./monthlylog/monthlylog.component');
+var futurlog_component_1 = require('./futurlog/futurlog.component');
+var searchentry_component_1 = require('./searchentry/searchentry.component');
+var collection_component_1 = require('./collection/collection.component');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -30,7 +30,6 @@ var AppModule = (function () {
                 forms_1.FormsModule,
                 http_1.HttpModule,
                 app_routing_module_1.AppRoutingModule,
-                angular_sortablejs_1.SortablejsModule
             ],
             declarations: [
                 app_component_1.AppComponent,
