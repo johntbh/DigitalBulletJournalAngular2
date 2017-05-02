@@ -78,7 +78,7 @@ var DailyLogComponent = (function () {
         core_1.Component({
             selector: 'my-dailylog',
             templateUrl: 'dailylog.component.html',
-            styleUrls: ['dailylog.component.css'],
+            styleUrls: ['../styles.css', 'dailylog.component.css'],
             moduleId: module.id,
             providers: [entry_dailylog_service_1.EntryDailyLogService, entry_service_1.EntryService, entry_supplement_service_1.EntrySupplementService]
         }), 

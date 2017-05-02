@@ -13,7 +13,7 @@ import { EntrySupplementService } from '../service/entry.supplement.service';
 @Component({
     selector: 'my-searchentry',
     templateUrl: 'searchentry.component.html',
-    styleUrls: ['searchentry.component.css'],
+    styleUrls: ['../styles.css','searchentry.component.css'],
     moduleId: module.id,
     providers: [EntrySearchService,EntryService,EntrySupplementService]
 })

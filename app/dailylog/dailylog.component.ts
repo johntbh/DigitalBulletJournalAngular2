@@ -11,7 +11,7 @@ import { EntrySupplementService } from '../service/entry.supplement.service';
 @Component({
     selector: 'my-dailylog',
     templateUrl: 'dailylog.component.html',
-    styleUrls: ['dailylog.component.css'],
+    styleUrls: ['../styles.css','dailylog.component.css'],
     moduleId: module.id,
     providers: [EntryDailyLogService,EntryService,EntrySupplementService]
 })

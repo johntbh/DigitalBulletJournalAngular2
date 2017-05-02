@@ -164,7 +164,7 @@ var SearchEntryComponent = (function () {
         core_1.Component({
             selector: 'my-searchentry',
             templateUrl: 'searchentry.component.html',
-            styleUrls: ['searchentry.component.css'],
+            styleUrls: ['../styles.css', 'searchentry.component.css'],
             moduleId: module.id,
             providers: [entry_search_service_1.EntrySearchService, entry_service_1.EntryService, entry_supplement_service_1.EntrySupplementService]
         }), 

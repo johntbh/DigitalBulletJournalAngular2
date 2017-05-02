@@ -12,7 +12,7 @@ import { EntrySupplementService } from '../service/entry.supplement.service';
 @Component({
     selector: 'my-collection',
     templateUrl: 'collection.component.html',
-    styleUrls: ['collection.component.css'],
+    styleUrls: ['../styles.css','collection.component.css'],
     moduleId: module.id,
     providers: [EntryCollectionService, CollectionService,EntrySupplementService]
 })

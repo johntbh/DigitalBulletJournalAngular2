@@ -11,7 +11,7 @@ import { EntrySupplementService } from '../service/entry.supplement.service';
 @Component({
     selector: 'my-monthlylog',
     templateUrl: 'monthlylog.component.html',
-    styleUrls: ['monthlylog.component.css'],
+    styleUrls: ['../styles.css','monthlylog.component.css'],
     moduleId: module.id,
     providers: [EntryMonthlyLogService,EntryService,EntrySupplementService]
 })

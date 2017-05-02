@@ -2,26 +2,25 @@
   <li class="col-md-offset-2 col-md-2 text-right">
     <a href="previous" (click)="previousCollection($event)">Previous</a>
   </li>
-  <input *ngIf="collection" class="col-md-4" type="text" required="required" [(ngModel)]="collection.nomCollection" (change)="updateCollection(collection)">
+  <div class="col-md-4">
+    <input *ngIf="collection" type="text" required="required" [(ngModel)]="collection.nomCollection" (change)="updateCollection(collection)" class="text-center">
+  </div>
   <li class="col-md-2">
     <a href="next" (click)="nextCollection($event)">Next</a>
-    <button (click)="addCollection($event)" class="btn btn-primary">New</button>
-    <button (click)="removeCollection(collection)" (click)="nextCollection($event)" class="btn btn-primary">Remove</button>
   </li>
 </h4>
-
-<!--
-<h4 class="row pager">
-  <div>Le nom de la Collection</div>
-</h4>
--->
-<div class="lines"></div>
+<div class="row">
+  <div class="col-md-offset-5 col-md-2">
+    <button (click)="addCollection($event)" class="btn btn-primary">New</button>
+    <button (click)="removeCollection(collection)" (click)="nextCollection($event)" class="btn btn-primary">Remove</button>
+  </div>
+</div>
 
 <div *ngIf="entries">
     <ul class="list">
-        <!-- Need to resize the input to wrap the content-->
-        <li *ngFor="let entry of entries">
+      <li *ngFor="let entry of entries" class="row">
 
+        <div class="col-md-1">
           <select (change)="updateEntry(entry)" [(ngModel)]="entry.signifier">
             <option *ngFor="let signifier of signifiers" [ngValue]="signifier.id" [selected]="signifier.id===entry.signifier" title="{{signifier.description}}">{{signifier.caractere}}</option>
           </select>
@@ -29,13 +28,20 @@
           <select (change)="updateEntry(entry)" [(ngModel)]="entry.bullet">
             <option *ngFor="let bullet of bullets" [ngValue]="bullet.id" [selected]="bullet.id===entry.bullet" title="{{bullet.description}}">{{bullet.caractere}}</option>
           </select>
+        </div>
 
+        <div class="col-md-10">
           <input [(ngModel)]="entry.text" type="text" placeholder="{{text_placeholder}}" (keyup)="updateEntry(entry)" />
-          <button (click)="removeEntry(entry)" class="btn btn-danger">X</button>
+        </div>
 
-        </li>
-        <li>
+        <div class="col-md-1">
+          <button (click)="removeEntry(entry)" class="btn btn-danger pull-center">X</button>
+        </div>
 
+      </li>
+      <li class="row">
+
+        <div class="col-md-1">
           <select [(ngModel)]="newEntry.signifier">
             <option *ngFor="let signifier of signifiers" [ngValue]="signifier.id" [selected]="signifier.id===signifiers[0].id" title="{{signifier.description}}">{{signifier.caractere}}</option>
           </select>
@@ -43,11 +49,16 @@
           <select [(ngModel)]="newEntry.bullet">
             <option *ngFor="let bullet of bullets" [ngValue]="bullet.id" [selected]="bullet.id===bullets[0].id" title="{{bullet.description}}">{{bullet.caractere}}</option>
           </select>
+        </div>
 
-          <input [(ngModel)]="newEntry.text" type="text" placeholder="{{text_placeholder}}" />
+        <div class="col-md-10">
+          <input [(ngModel)]="newEntry.text" type="text" placeholder="{{text_placeholder}}"/>
+        </div>
 
-          <button (click)="addEntry()" class="btn btn-primary">Ajouter</button>
+        <div class="col-md-1">
+          <button (click)="addEntry()" class="btn btn-primary pull-left">Ajouter</button>
+        </div>
 
-        </li>
+      </li>
     </ul>
-</div> 
+</div>

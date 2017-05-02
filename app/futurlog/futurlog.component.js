@@ -150,7 +150,7 @@ var FuturLogComponent = (function () {
         core_1.Component({
             selector: 'my-futurlog',
             templateUrl: 'futurlog.component.html',
-            styleUrls: ['futurlog.component.css'],
+            styleUrls: ['../styles.css', 'futurlog.component.css'],
             moduleId: module.id,
             providers: [entry_futurlog_service_1.EntryFuturLogService, entry_service_1.EntryService, entry_supplement_service_1.EntrySupplementService]
         }), 

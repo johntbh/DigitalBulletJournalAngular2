@@ -148,7 +148,7 @@ var CollectionComponent = (function () {
         core_1.Component({
             selector: 'my-collection',
             templateUrl: 'collection.component.html',
-            styleUrls: ['collection.component.css'],
+            styleUrls: ['../styles.css', 'collection.component.css'],
             moduleId: module.id,
             providers: [entryCollection_service_1.EntryCollectionService, collection_service_1.CollectionService, entry_supplement_service_1.EntrySupplementService]
         }), 

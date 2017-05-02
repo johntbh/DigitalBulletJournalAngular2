@@ -107,7 +107,7 @@ var MonthlyLogComponent = (function () {
         core_1.Component({
             selector: 'my-monthlylog',
             templateUrl: 'monthlylog.component.html',
-            styleUrls: ['monthlylog.component.css'],
+            styleUrls: ['../styles.css', 'monthlylog.component.css'],
             moduleId: module.id,
             providers: [entry_monthlylog_service_1.EntryMonthlyLogService, entry_service_1.EntryService, entry_supplement_service_1.EntrySupplementService]
         }), 

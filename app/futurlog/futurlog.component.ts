@@ -11,7 +11,7 @@ import { EntrySupplementService } from '../service/entry.supplement.service';
 @Component({
     selector: 'my-futurlog',
     templateUrl: 'futurlog.component.html',
-    styleUrls: ['futurlog.component.css'],
+    styleUrls: ['../styles.css','futurlog.component.css'],
     moduleId: module.id,
     providers: [EntryFuturLogService,EntryService,EntrySupplementService]
 })

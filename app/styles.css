@@ -1,0 +1,96 @@
+body {
+    background-color: #f5f5f5;
+    width: 600px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+h4 {
+    color: #cd0000;
+    font-size: 42px;
+    letter-spacing: -2px;
+    text-align: left;
+}
+
+.row {
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
+.list {
+    color: #555;
+    font-size: 22px;
+    padding: 0 !important;
+    font-family: courier, monospace;
+    border: 1px solid #dedede;
+}
+
+.list li {
+    list-style: none;
+    border-bottom: 1px dotted #ccc;
+    text-indent: 25px;
+    height: auto;
+    padding: 10px;
+    text-transform: capitalize;
+}
+
+.list li:hover, .list li>div>input:hover, .list li>div>select:hover, .list li:hover>div>input, .list li:hover>div>select {
+    background-color: #f0f0f0;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    -o-transition: all 0.2s;
+}
+
+.pager li>a {
+  font-size: 24px;
+}
+
+input[type=text] {
+    border-width: 0px;
+    width: 100%;
+}
+
+input[type=date] {
+    text-align: center;
+    border-width: 0px;
+}
+
+input[type=month] {
+    text-align: center;
+    border-width: 0px;
+}
+
+input[type=date]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
+}
+
+input[type=date]::-webkit-calendar-picker-indicator {
+    opacity: 100;
+}
+
+input[type=month]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    display: none;
+}
+
+input[type=month]::-webkit-calendar-picker-indicator {
+    opacity: 100;
+}
+
+input:focus {
+    outline: none;
+}
+
+select {
+    border-width: 0px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+}
+
+select:focus {
+    outline: none;
+}

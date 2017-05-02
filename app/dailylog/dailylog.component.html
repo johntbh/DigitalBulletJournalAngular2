@@ -8,39 +8,41 @@
   </li>
 </h4>
 
-<div class="lines"></div>
-
 <div *ngIf="entries">
     <ul class="list">
-        <!-- Need to resize the input to wrap the content -->
-        <li *ngFor="let entry of entries">
+        <li *ngFor="let entry of entries" class="row">
+          <div class="col-md-1">
+            <select (change)="updateEntry(entry)" [(ngModel)]="entry.signifier">
+              <option *ngFor="let signifier of signifiers" [ngValue]="signifier.id" [selected]="signifier.id===entry.signifier" title="{{signifier.description}}">{{signifier.caractere}}</option>
+            </select>
 
-          <select (change)="updateEntry(entry)" [(ngModel)]="entry.signifier">
-            <option *ngFor="let signifier of signifiers" [ngValue]="signifier.id" [selected]="signifier.id===entry.signifier" title="{{signifier.description}}">{{signifier.caractere}}</option>
-          </select>
-
-          <select (change)="updateEntry(entry)" [(ngModel)]="entry.bullet">
-            <option *ngFor="let bullet of bullets" [ngValue]="bullet.id" [selected]="bullet.id===entry.bullet" title="{{bullet.description}}">{{bullet.caractere}}</option>
-          </select>
-
-          <input [(ngModel)]="entry.text" type="text" placeholder="{{text_placeholder}}" (keyup)="updateEntry(entry)" />
-          <button (click)="removeEntry(entry)" class="btn btn-danger">X</button>
-
+            <select (change)="updateEntry(entry)" [(ngModel)]="entry.bullet">
+              <option *ngFor="let bullet of bullets" [ngValue]="bullet.id" [selected]="bullet.id===entry.bullet" title="{{bullet.description}}">{{bullet.caractere}}</option>
+            </select>
+          </div>
+          <div class="col-md-10">
+            <input [(ngModel)]="entry.text" type="text" placeholder="{{text_placeholder}}" (keyup)="updateEntry(entry)" />
+          </div>
+          <div class="col-md-1">
+            <button (click)="removeEntry(entry)" class="btn btn-danger pull-center">X</button>
+          </div>
         </li>
-        <li>
+        <li class="row">
+          <div class="col-md-1">
+            <select [(ngModel)]="newEntry.signifier">
+              <option *ngFor="let signifier of signifiers" [ngValue]="signifier.id" [selected]="signifier.id===signifiers[0].id" title="{{signifier.description}}">{{signifier.caractere}}</option>
+            </select>
 
-          <select [(ngModel)]="newEntry.signifier">
-            <option *ngFor="let signifier of signifiers" [ngValue]="signifier.id" [selected]="signifier.id===signifiers[0].id" title="{{signifier.description}}">{{signifier.caractere}}</option>
-          </select>
-
-          <select [(ngModel)]="newEntry.bullet">
-            <option *ngFor="let bullet of bullets" [ngValue]="bullet.id" [selected]="bullet.id===bullets[0].id" title="{{bullet.description}}">{{bullet.caractere}}</option>
-          </select>
-
-          <input [(ngModel)]="newEntry.text" type="text" placeholder="{{text_placeholder}}" />
-
-          <button (click)="addEntry()" class="btn btn-primary">Ajouter</button>
-
+            <select [(ngModel)]="newEntry.bullet">
+              <option *ngFor="let bullet of bullets" [ngValue]="bullet.id" [selected]="bullet.id===bullets[0].id" title="{{bullet.description}}">{{bullet.caractere}}</option>
+            </select>
+          </div>
+          <div class="col-md-10">
+            <input [(ngModel)]="newEntry.text" type="text" placeholder="{{text_placeholder}}" />
+          </div>
+          <div class="col-md-1 pull-left">
+            <button (click)="addEntry()" class="btn btn-primary pull-left">Ajouter</button>
+          </div>
         </li>
     </ul>
 </div>
