@@ -11,7 +11,7 @@ const routes: Routes = [
     { path: 'dailylog', component: DailyLogComponent },
     { path: 'monthlylog', component: MonthlyLogComponent },
     { path: 'futurlog', component: FuturLogComponent },
-    { path: 'searchentry', component: SearchEntryComponent },
+    { path: 'search/:search', component: SearchEntryComponent },
     { path: 'collection', component: CollectionComponent },
     /*{ path: '', redirectTo: '/dailylog', pathMatch: 'full' }*/
 ];

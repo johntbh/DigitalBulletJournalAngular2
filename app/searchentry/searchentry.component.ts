@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { Entry } from '../modele/entry';
 import { Type } from '../modele//type';
@@ -31,11 +32,16 @@ export class SearchEntryComponent {
     dateEndString: String;
     timer: any;
 
-    constructor(private EntrySearchService: EntrySearchService, private EntryService: EntryService, private EntrySupplementService: EntrySupplementService) { }
+    constructor(private route: ActivatedRoute, private router: Router, private EntrySearchService: EntrySearchService, private EntryService: EntryService, private EntrySupplementService: EntrySupplementService) { }
 
     ngOnInit(): void {
       this.search = new SearchParameters();
       this.getEntriesSupplement();
+
+      if(this.route.snapshot.params['search'].trim()) {
+        this.search.text = this.route.snapshot.params['search'].trim();
+        this.getSearchEntries();
+      }
     }
 
     getEntriesSupplement(): void {

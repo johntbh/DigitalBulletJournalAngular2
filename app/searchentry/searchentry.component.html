@@ -59,36 +59,36 @@
           </th>
         </tr>
         <tr>
-          <th>Date</th>
-          <th>Type</th>
-          <th>Signifier</th>
-          <th>Bullet</th>
-          <th>Text</th>
-          <th>Action</th>
+          <th class="text-center">Date</th>
+          <th class="text-center">Type</th>
+          <th class="text-center">Signifier</th>
+          <th class="text-center">Bullet</th>
+          <th class="text-center">Text</th>
+          <th class="text-center">Action</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let entry of entries">
-          <td>
+          <td class="col-md-2">
             {{entry.date | date:getDatePattern(entry)}}
           </td>
-          <td>
+          <td class="col-md-2">
             {{getType(entry)}}
           </td>
-          <td>
+          <td class="col-md-1">
             <select (change)="updateEntry(entry)" [(ngModel)]="entry.signifier">
               <option *ngFor="let signifier of signifiers" [ngValue]="signifier.id" [selected]="signifier.id===entry.signifier" title="{{signifier.description}}">{{signifier.caractere}}</option>
             </select>
           </td>
-          <td>
+          <td class="col-md-1">
             <select (change)="updateEntry(entry)" [(ngModel)]="entry.bullet">
               <option *ngFor="let bullet of bullets" [ngValue]="bullet.id" [selected]="bullet.id===entry.bullet" title="{{bullet.description}}">{{bullet.caractere}}</option>
             </select>
           </td>
-          <td>
+          <td class="col-md-5">
             <input [(ngModel)]="entry.text" type="text" class="entry-text-modifiable" (keyup)="updateEntry(entry)"/>
           </td>
-          <td>
+          <td class="col-md-1">
             <button (click)="removeEntry(entry)" class="btn btn-danger">X</button>
           </td>
         </tr>

@@ -19,7 +19,7 @@ var routes = [
     { path: 'dailylog', component: dailylog_component_1.DailyLogComponent },
     { path: 'monthlylog', component: monthlylog_component_1.MonthlyLogComponent },
     { path: 'futurlog', component: futurlog_component_1.FuturLogComponent },
-    { path: 'searchentry', component: searchentry_component_1.SearchEntryComponent },
+    { path: 'search/:search', component: searchentry_component_1.SearchEntryComponent },
     { path: 'collection', component: collection_component_1.CollectionComponent },
 ];
 var AppRoutingModule = (function () {

@@ -17,7 +17,7 @@ h4 {
   margin-left: 0px;
 }
 
-.list {
+.list, tbody{
     color: #555;
     font-size: 22px;
     padding: 0 !important;
@@ -25,13 +25,21 @@ h4 {
     border: 1px solid #dedede;
 }
 
-.list li {
-    list-style: none;
-    border-bottom: 1px dotted #ccc;
-    text-indent: 25px;
-    height: auto;
-    padding: 10px;
-    text-transform: capitalize;
+.list li{
+  list-style: none;
+  border-bottom: 1px dotted #ccc;
+  text-indent: 25px;
+  height: auto;
+  padding: 10px;
+  text-transform: capitalize;
+}
+
+tbody td {
+  border-bottom: 1px dotted #ccc;
+  height: auto;
+  padding: 10px;
+  text-transform: capitalize;
+  text-align: center;
 }
 
 .list li:hover, .list li>div>input:hover, .list li>div>select:hover, .list li:hover>div>input, .list li:hover>div>select {
@@ -45,6 +53,15 @@ h4 {
 .pager li>a {
   font-size: 24px;
 }
+
+tr:hover, tr input:hover, tr select:hover, tr:hover input, tr:hover select, td:hover select, td:hover input {
+    background-color: #f5f5f5;
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    -o-transition: all 0.2s;
+}
+
 
 input[type=text] {
     border-width: 0px;

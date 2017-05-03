@@ -9,12 +9,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
 var searchparameters_1 = require('../modele//searchparameters');
 var entry_search_service_1 = require('../service/entry.search.service');
 var entry_service_1 = require('../service/entry.service');
 var entry_supplement_service_1 = require('../service/entry.supplement.service');
 var SearchEntryComponent = (function () {
-    function SearchEntryComponent(EntrySearchService, EntryService, EntrySupplementService) {
+    function SearchEntryComponent(route, router, EntrySearchService, EntryService, EntrySupplementService) {
+        this.route = route;
+        this.router = router;
         this.EntrySearchService = EntrySearchService;
         this.EntryService = EntryService;
         this.EntrySupplementService = EntrySupplementService;
@@ -22,6 +25,10 @@ var SearchEntryComponent = (function () {
     SearchEntryComponent.prototype.ngOnInit = function () {
         this.search = new searchparameters_1.SearchParameters();
         this.getEntriesSupplement();
+        if (this.route.snapshot.params['search'].trim()) {
+            this.search.text = this.route.snapshot.params['search'].trim();
+            this.getSearchEntries();
+        }
     };
     SearchEntryComponent.prototype.getEntriesSupplement = function () {
         var _this = this;
@@ -168,7 +175,7 @@ var SearchEntryComponent = (function () {
             moduleId: module.id,
             providers: [entry_search_service_1.EntrySearchService, entry_service_1.EntryService, entry_supplement_service_1.EntrySupplementService]
         }), 
-        __metadata('design:paramtypes', [entry_search_service_1.EntrySearchService, entry_service_1.EntryService, entry_supplement_service_1.EntrySupplementService])
+        __metadata('design:paramtypes', [router_1.ActivatedRoute, router_1.Router, entry_search_service_1.EntrySearchService, entry_service_1.EntryService, entry_supplement_service_1.EntrySupplementService])
     ], SearchEntryComponent);
     return SearchEntryComponent;
 }());
