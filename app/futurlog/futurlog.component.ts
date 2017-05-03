@@ -91,7 +91,6 @@ export class FuturLogComponent {
 
   addFuturEntry(index: number) {
     this.entry_futur[index].date.setDate(this.entry_futur[index].day.valueOf())
-    this.entry_futur[index].futur = true
     this.EntryFuturLogService.addEntry(this.entry_futur[index]).then(fullEntry => {
       this.entries_futur[index].push(fullEntry)
       this.entry_futur[index] = this.getNewEntryWithDateInMonth(index)
@@ -123,6 +122,8 @@ export class FuturLogComponent {
     var newEntry = new Entry();
     var date_entry = new Date(this.month_date)
     date_entry.setMonth(date_entry.getMonth()+plus_month)
+    date_entry.setDate(1)
+    date_entry.setHours(12)
     newEntry.day = 1
     newEntry.date = date_entry
     return newEntry

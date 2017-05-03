@@ -71,17 +71,21 @@ export class DailyLogComponent {
     }
 
     addEntry() {
+      if(this.newEntry.text.trim()) {
+        this.newEntry.date = new Date(this.date.toString());
+        var today = new Date();
+        this.newEntry.date.setHours(today.getHours()+2);
+        this.newEntry.date.setMinutes(today.getMinutes())
         this.EntryDailyLogService.addEntry(this.newEntry).then(fullEntry => {
             this.entries.push(fullEntry);
             this.newEntry = new Entry();
         });
+      }
     }
 
     updateEntry(entry: Entry) {
       clearTimeout(this.timer);
-      this.timer = setTimeout(
-        () => this.EntryService.updateEntry(entry), 500);
-      console.log(this.bullets)
+      this.timer = setTimeout(() => this.EntryService.updateEntry(entry), 500);
     }
 
     removeEntry(entry: Entry) {
@@ -89,5 +93,11 @@ export class DailyLogComponent {
             var index = this.entries.indexOf(entry);
             this.entries.splice(index, 1);
         });
+    }
+
+    checkAddEntry(event: any) {
+      if(event.keyCode === 13) {
+        this.addEntry()
+      }
     }
 }

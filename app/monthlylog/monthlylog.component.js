@@ -45,8 +45,10 @@ var MonthlyLogComponent = (function () {
             var max = date.getDate();
             for (var i = 0; i < max; i++) {
                 var date_entry = new entry_1.Entry();
+                date_entry.date.setFullYear(date.getFullYear());
                 date_entry.date.setMonth(date.getMonth());
                 date_entry.date.setDate(i + 1);
+                date_entry.date.setHours(date_entry.date.getHours() + 2);
                 _this.entries_day[i] = date_entry;
             }
             for (var _i = 0, entries_day_1 = entries_day; _i < entries_day_1.length; _i++) {
@@ -74,22 +76,36 @@ var MonthlyLogComponent = (function () {
     MonthlyLogComponent.prototype.addMonthEntry = function (entry) {
         var _this = this;
         if (entry.text.trim()) {
-            entry.monthly = true;
             this.EntryMonthlyLogService.addDailyEntry(entry).then(function (fullEntry) {
                 var index = _this.entries_day.indexOf(entry);
                 _this.entries_day[index] = fullEntry;
             });
         }
     };
+    MonthlyLogComponent.prototype.checkAddMonthEntry = function (event, entry) {
+        if (event.keyCode === 13) {
+            this.addMonthEntry(entry);
+        }
+    };
     MonthlyLogComponent.prototype.addMonthlyEntry = function () {
         var _this = this;
         if (this.newEntryMonthly.text.trim()) {
-            this.newEntryMonthly.monthly = true;
-            this.newEntryMonthly.futur = true;
+            var date = new Date(this.month.toString());
+            this.newEntryMonthly.date.setFullYear(date.getFullYear());
+            this.newEntryMonthly.date.setMonth(date.getMonth());
+            this.newEntryMonthly.date.setDate(1);
+            this.newEntryMonthly.date.setHours(12);
+            this.newEntryMonthly.date.setMinutes(0);
+            console.log(this.newEntryMonthly);
             this.EntryMonthlyLogService.addMonthlyEntry(this.newEntryMonthly).then(function (fullEntry) {
                 _this.entries_month.push(fullEntry);
                 _this.newEntryMonthly = new entry_1.Entry();
             });
+        }
+    };
+    MonthlyLogComponent.prototype.checkAddMonthlyEntry = function (event) {
+        if (event.keyCode === 13) {
+            this.addMonthlyEntry();
         }
     };
     MonthlyLogComponent.prototype.updateEntry = function (entry) {
@@ -97,10 +113,23 @@ var MonthlyLogComponent = (function () {
         clearTimeout(this.timer);
         this.timer = setTimeout(function () { return _this.EntryService.updateEntry(entry); }, 500);
     };
-    MonthlyLogComponent.prototype.removeEntry = function (entry, entries) {
+    MonthlyLogComponent.prototype.removeMonthEntry = function (entry) {
+        var _this = this;
         this.EntryService.deleteEntry(entry).then(function () {
-            var index = entries.indexOf(entry);
-            entries.splice(index, 1);
+            var index = _this.entries_day.indexOf(entry);
+            var date_entry = new entry_1.Entry();
+            var date = new Date(_this.month.toString());
+            date_entry.date.setMonth(date.getMonth());
+            date_entry.date.setDate(index);
+            console.log(date_entry.date);
+            _this.entries_day[index] = date_entry;
+        });
+    };
+    MonthlyLogComponent.prototype.removeMonthlyEntry = function (entry) {
+        var _this = this;
+        this.EntryService.deleteEntry(entry).then(function () {
+            var index = _this.entries_month.indexOf(entry);
+            _this.entries_month.splice(index, 1);
         });
     };
     MonthlyLogComponent = __decorate([

@@ -76,7 +76,6 @@ var FuturLogComponent = (function () {
     FuturLogComponent.prototype.addFuturEntry = function (index) {
         var _this = this;
         this.entry_futur[index].date.setDate(this.entry_futur[index].day.valueOf());
-        this.entry_futur[index].futur = true;
         this.EntryFuturLogService.addEntry(this.entry_futur[index]).then(function (fullEntry) {
             _this.entries_futur[index].push(fullEntry);
             _this.entry_futur[index] = _this.getNewEntryWithDateInMonth(index);
@@ -106,6 +105,8 @@ var FuturLogComponent = (function () {
         var newEntry = new entry_1.Entry();
         var date_entry = new Date(this.month_date);
         date_entry.setMonth(date_entry.getMonth() + plus_month);
+        date_entry.setDate(1);
+        date_entry.setHours(12);
         newEntry.day = 1;
         newEntry.date = date_entry;
         return newEntry;

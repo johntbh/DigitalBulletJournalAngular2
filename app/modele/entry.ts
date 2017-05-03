@@ -11,8 +11,6 @@ const SIGNIFIER_NO_SIGNIFIER: Number = 5;
     bullet: Number;
     signifier: Number;
     date: Date;
-    monthly: Boolean;
-    futur: Boolean;
     day: Number;
 
     constructor() {
@@ -21,16 +19,5 @@ const SIGNIFIER_NO_SIGNIFIER: Number = 5;
         this.bullet = BULLET_TASK_STANDARD;
         this.signifier = SIGNIFIER_NO_SIGNIFIER;
         this.date = new Date();
-        this.monthly = false;
-        this.futur=false;
-    }
-
-    getType(): string {
-      if(this.monthly) {
-        if(this.futur) return "Monthly";
-        return "Month";
-      }
-      if(this.futur) return "Futur";
-      return "Daily";
     }
 }

@@ -33,7 +33,7 @@
         </div>
 
         <div class="col-md-2">
-          <button type="button" *ngIf="entry_day.id!==0" (click)="removeEntry(entry_day,entries_day)" class="btn btn-danger pull-center">X</button>
+          <button type="button" *ngIf="entry_day.id!==0" (click)="removeMonthEntry(entry_day,entries_day)" class="btn btn-danger pull-center">X</button>
           <button type="button" *ngIf="entry_day.id===0" (click)="addMonthEntry(entry_day)" class="btn btn-primary pull-left">Ajouter</button>
         </div>
 
@@ -63,7 +63,7 @@
           </div>
 
           <div class="col-md-2">
-            <button (click)="removeEntry(entry,entries_month)" class="btn btn-danger pull-center">X</button>
+            <button (click)="removeMonthlyEntry(entry)" class="btn btn-danger pull-center">X</button>
           </div>
 
         </li>
@@ -80,7 +80,7 @@
           </div>
 
           <div class="col-md-8">
-            <input [(ngModel)]="newEntryMonthly.text" type="text" placeholder="{{text_placeholder}}"/>
+            <input [(ngModel)]="newEntryMonthly.text" type="text" placeholder="{{text_placeholder}}" (keyup)="checkAddMonthlyEntry($event)"/>
           </div>
 
           <div class="col-md-2">

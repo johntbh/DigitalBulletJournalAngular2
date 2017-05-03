@@ -38,7 +38,7 @@
             </select>
           </div>
           <div class="col-md-10">
-            <input [(ngModel)]="newEntry.text" type="text" placeholder="{{text_placeholder}}" />
+            <input [(ngModel)]="newEntry.text" type="text" placeholder="{{text_placeholder}}" (keyup)="checkAddEntry($event)"/>
           </div>
           <div class="col-md-1 pull-left">
             <button (click)="addEntry()" class="btn btn-primary pull-left">Ajouter</button>

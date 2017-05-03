@@ -9,19 +9,7 @@ var Entry = (function () {
         this.bullet = BULLET_TASK_STANDARD;
         this.signifier = SIGNIFIER_NO_SIGNIFIER;
         this.date = new Date();
-        this.monthly = false;
-        this.futur = false;
     }
-    Entry.prototype.getType = function () {
-        if (this.monthly) {
-            if (this.futur)
-                return "Monthly";
-            return "Month";
-        }
-        if (this.futur)
-            return "Futur";
-        return "Daily";
-    };
     return Entry;
 }());
 exports.Entry = Entry;

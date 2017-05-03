@@ -56,16 +56,21 @@ var DailyLogComponent = (function () {
     };
     DailyLogComponent.prototype.addEntry = function () {
         var _this = this;
-        this.EntryDailyLogService.addEntry(this.newEntry).then(function (fullEntry) {
-            _this.entries.push(fullEntry);
-            _this.newEntry = new entry_1.Entry();
-        });
+        if (this.newEntry.text.trim()) {
+            this.newEntry.date = new Date(this.date.toString());
+            var today = new Date();
+            this.newEntry.date.setHours(today.getHours() + 2);
+            this.newEntry.date.setMinutes(today.getMinutes());
+            this.EntryDailyLogService.addEntry(this.newEntry).then(function (fullEntry) {
+                _this.entries.push(fullEntry);
+                _this.newEntry = new entry_1.Entry();
+            });
+        }
     };
     DailyLogComponent.prototype.updateEntry = function (entry) {
         var _this = this;
         clearTimeout(this.timer);
         this.timer = setTimeout(function () { return _this.EntryService.updateEntry(entry); }, 500);
-        console.log(this.bullets);
     };
     DailyLogComponent.prototype.removeEntry = function (entry) {
         var _this = this;
@@ -73,6 +78,11 @@ var DailyLogComponent = (function () {
             var index = _this.entries.indexOf(entry);
             _this.entries.splice(index, 1);
         });
+    };
+    DailyLogComponent.prototype.checkAddEntry = function (event) {
+        if (event.keyCode === 13) {
+            this.addEntry();
+        }
     };
     DailyLogComponent = __decorate([
         core_1.Component({
